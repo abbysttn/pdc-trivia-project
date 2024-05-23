@@ -16,8 +16,17 @@ public class runGame {
     public static void main(String[] args) { //loads all highscores into the game and runs the main page
         DBManager dbManager = new DBManager(); //connect database
         dbManager.getConnection();
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TriviaFrame().setVisible(true);
+            }
+        });
+        
         highScores.loadHighScores();
         mainPage.runMainPage();
+        
+        
 
     }
 
