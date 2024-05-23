@@ -14,6 +14,8 @@ import java.util.Scanner;
 public class runGame {
 
     public static void main(String[] args) { //loads all highscores into the game and runs the main page
+        DBManager dbManager = new DBManager(); //connect database
+        dbManager.getConnection();
         highScores.loadHighScores();
         mainPage.runMainPage();
 
