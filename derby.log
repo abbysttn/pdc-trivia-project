@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\abbys\OneDrive\Documents\NetBeansProjects\Trivia_Project_GUI
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu May 23 16:31:23 NZST 2024: Shutting down Derby engine
+----------------------------------------------------------------
+Thu May 23 16:31:23 NZST 2024:
+Shutting down instance a816c00e-018f-a3b3-eb42-000006ded153 on database directory C:\Users\abbys\OneDrive\Documents\NetBeansProjects\Trivia_Project_GUI\TriviaGameDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2cdf8d8a 
+----------------------------------------------------------------
