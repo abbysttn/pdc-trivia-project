@@ -184,7 +184,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         resetTriviaGame.clearAll(); //clears all questions from the hashmaps to ensure all answers remain accurate the next round
         
 
-        highScores.newHighScore(highScore); // adds a new highscore for the user
         boolean run = true;
 
         while (run) {

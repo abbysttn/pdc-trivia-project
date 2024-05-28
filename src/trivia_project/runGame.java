@@ -17,17 +17,13 @@ public class runGame {
         DBManager dbManager = new DBManager(); //connect database
         dbManager.getConnection();
         
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TriviaFrame().setVisible(true);
             }
         });
         
-        highScores.loadHighScores();
-        mainPage.runMainPage();
-        
-        
-
     }
 
     public static void quitProgram() { //checks with user if they wish to quit and exits the program

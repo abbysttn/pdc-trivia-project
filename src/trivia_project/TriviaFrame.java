@@ -40,18 +40,33 @@ public class TriviaFrame extends javax.swing.JFrame {
 
         main = new javax.swing.JPanel();
         startPage = new javax.swing.JPanel();
+        TriviaTrek = new javax.swing.JLabel();
+        howMuch = new javax.swing.JLabel();
+        toMain = new javax.swing.JButton();
+        mainPage = new javax.swing.JPanel();
+        toStart = new javax.swing.JButton();
+        title = new javax.swing.JLabel();
+        exit = new javax.swing.JButton();
+        HowTo = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        howToPlay = new javax.swing.JPanel();
+        title1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        mainPage = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(51, 0, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(650, 365));
+        setMinimumSize(new java.awt.Dimension(652, 400));
+        setPreferredSize(new java.awt.Dimension(652, 400));
         getContentPane().setLayout(null);
 
         main.setBackground(new java.awt.Color(200, 213, 185));
@@ -59,28 +74,28 @@ public class TriviaFrame extends javax.swing.JFrame {
         main.setMinimumSize(new java.awt.Dimension(650, 365));
         main.setLayout(new java.awt.CardLayout());
 
-        startPage.setBackground(new java.awt.Color(200, 213, 185));
+        startPage.setBackground(new java.awt.Color(247, 237, 226));
         startPage.setMinimumSize(new java.awt.Dimension(650, 365));
         startPage.setPreferredSize(new java.awt.Dimension(650, 365));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Trivia Trekker");
+        TriviaTrek.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        TriviaTrek.setForeground(new java.awt.Color(61, 82, 77));
+        TriviaTrek.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TriviaTrek.setText("Trivia Trekker");
 
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText(" How much do you really know...");
+        howMuch.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        howMuch.setForeground(new java.awt.Color(132, 165, 157));
+        howMuch.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        howMuch.setText(" How much do you really know...");
 
-        jButton1.setBackground(new java.awt.Color(104, 176, 171));
-        jButton1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Play?");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        toMain.setBackground(new java.awt.Color(246, 189, 96));
+        toMain.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        toMain.setForeground(new java.awt.Color(51, 51, 51));
+        toMain.setText("Play?");
+        toMain.setBorderPainted(false);
+        toMain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                toMainActionPerformed(evt);
             }
         });
 
@@ -88,67 +103,264 @@ public class TriviaFrame extends javax.swing.JFrame {
         startPage.setLayout(startPageLayout);
         startPageLayout.setHorizontalGroup(
             startPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(TriviaTrek, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(howMuch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(startPageLayout.createSequentialGroup()
                 .addGap(286, 286, 286)
-                .addComponent(jButton1)
+                .addComponent(toMain)
                 .addContainerGap(292, Short.MAX_VALUE))
         );
         startPageLayout.setVerticalGroup(
             startPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(startPageLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TriviaTrek, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(howMuch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(toMain)
                 .addContainerGap(134, Short.MAX_VALUE))
         );
 
         main.add(startPage, "card5");
 
-        mainPage.setBackground(new java.awt.Color(200, 213, 185));
+        mainPage.setBackground(new java.awt.Color(247, 237, 226));
         mainPage.setMinimumSize(new java.awt.Dimension(650, 365));
         mainPage.setPreferredSize(new java.awt.Dimension(650, 365));
 
-        jButton2.setBackground(new java.awt.Color(255, 204, 102));
-        jButton2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("<");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        toStart.setBackground(new java.awt.Color(255, 204, 102));
+        toStart.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        toStart.setForeground(new java.awt.Color(132, 165, 157));
+        toStart.setText("<");
+        toStart.setBorderPainted(false);
+        toStart.setContentAreaFilled(false);
+        toStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                toStartActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Trivia Trekker");
+        title.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        title.setForeground(new java.awt.Color(61, 82, 77));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("Trivia Trekker");
+
+        exit.setForeground(new java.awt.Color(132, 165, 157));
+        exit.setText("X");
+        exit.setBorderPainted(false);
+        exit.setContentAreaFilled(false);
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+
+        HowTo.setBackground(new java.awt.Color(245, 202, 195));
+        HowTo.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        HowTo.setForeground(new java.awt.Color(61, 82, 77));
+        HowTo.setText("How To Play");
+        HowTo.setBorderPainted(false);
+        HowTo.setMaximumSize(new java.awt.Dimension(120, 40));
+        HowTo.setMinimumSize(new java.awt.Dimension(120, 40));
+        HowTo.setPreferredSize(new java.awt.Dimension(120, 40));
+        HowTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HowToActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(246, 189, 96));
+        jButton2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(61, 82, 77));
+        jButton2.setText("New Game");
+        jButton2.setBorderPainted(false);
+        jButton2.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton2.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton2.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        jButton3.setBackground(new java.awt.Color(245, 202, 195));
+        jButton3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(61, 82, 77));
+        jButton3.setText("High Scores");
+        jButton3.setBorderPainted(false);
+        jButton3.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton3.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton3.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        jButton4.setBackground(new java.awt.Color(245, 202, 195));
+        jButton4.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(61, 82, 77));
+        jButton4.setText("Customise");
+        jButton4.setBorderPainted(false);
+        jButton4.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton4.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton4.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        jButton6.setBackground(new java.awt.Color(245, 202, 195));
+        jButton6.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(61, 82, 77));
+        jButton6.setText("Reset Game");
+        jButton6.setBorderPainted(false);
+        jButton6.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton6.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton6.setPreferredSize(new java.awt.Dimension(120, 40));
 
         javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
         mainPage.setLayout(mainPageLayout);
         mainPageLayout.setHorizontalGroup(
             mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(mainPageLayout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addComponent(toStart)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
+                        .addComponent(exit)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
+                        .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(mainPageLayout.createSequentialGroup()
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPageLayout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)
+                                .addComponent(HowTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(mainPageLayout.createSequentialGroup()
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(217, 217, 217)))
+                        .addGap(157, 157, 157))))
         );
         mainPageLayout.setVerticalGroup(
             mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPageLayout.createSequentialGroup()
-                .addComponent(jButton2)
+                .addContainerGap()
+                .addComponent(exit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HowTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(toStart))
         );
 
         main.add(mainPage, "card3");
+
+        howToPlay.setBackground(new java.awt.Color(247, 237, 226));
+        howToPlay.setMinimumSize(new java.awt.Dimension(650, 365));
+
+        title1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        title1.setForeground(new java.awt.Color(61, 82, 77));
+        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1.setText("How To Play");
+
+        jLabel1.setBackground(new java.awt.Color(132, 165, 157));
+        jLabel1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(132, 165, 157));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("To answer a question, click the button that you think is the answer.");
+
+        jLabel2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(61, 82, 77));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("This game is called:");
+
+        jButton5.setBackground(new java.awt.Color(245, 202, 195));
+        jButton5.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(61, 82, 77));
+        jButton5.setText("Cards");
+        jButton5.setBorderPainted(false);
+        jButton5.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton5.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton5.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        jButton7.setBackground(new java.awt.Color(245, 202, 195));
+        jButton7.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(61, 82, 77));
+        jButton7.setText("Chess");
+        jButton7.setBorderPainted(false);
+        jButton7.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton7.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton7.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        jButton8.setBackground(new java.awt.Color(245, 202, 195));
+        jButton8.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(61, 82, 77));
+        jButton8.setText("Go");
+        jButton8.setBorderPainted(false);
+        jButton8.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton8.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton8.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        jButton9.setBackground(new java.awt.Color(245, 202, 195));
+        jButton9.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(61, 82, 77));
+        jButton9.setText("Trivia Trekker");
+        jButton9.setBorderPainted(false);
+        jButton9.setMaximumSize(new java.awt.Dimension(120, 40));
+        jButton9.setMinimumSize(new java.awt.Dimension(120, 40));
+        jButton9.setPreferredSize(new java.awt.Dimension(120, 40));
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout howToPlayLayout = new javax.swing.GroupLayout(howToPlay);
+        howToPlay.setLayout(howToPlayLayout);
+        howToPlayLayout.setHorizontalGroup(
+            howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, howToPlayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, howToPlayLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(howToPlayLayout.createSequentialGroup()
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(howToPlayLayout.createSequentialGroup()
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(146, 146, 146))
+        );
+        howToPlayLayout.setVerticalGroup(
+            howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(howToPlayLayout.createSequentialGroup()
+                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addGap(48, 48, 48)
+                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        main.add(howToPlay, "card4");
 
         getContentPane().add(main);
         main.setBounds(0, 0, 0, 0);
@@ -157,38 +369,70 @@ public class TriviaFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void toMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toMainActionPerformed
         // TODO add your handling code here:
+        // also do if continue game to another or remove continue game button.
         main.removeAll();
         main.add(mainPage);
         main.repaint();
         main.revalidate();
-        Dimension size = getSize();
-        System.out.println("Current size of JFrame: Width = " + size.width + ", Height = " + size.height);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_toMainActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void toStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toStartActionPerformed
         // TODO add your handling code here:
         main.removeAll();
         main.add(startPage);
         main.repaint();
         main.revalidate();
-        Dimension size = getSize();
-        System.out.println("Current size of JFrame: Width = " + size.width + ", Height = " + size.height);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_toStartActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        howToPlay.remove(jLabel1);
+        howToPlay.remove(jLabel2);
+        howToPlay.repaint();
+        howToPlay.revalidate();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HowToActionPerformed
+        // TODO add your handling code here:
+        main.removeAll();
+        main.add(howToPlay);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_HowToActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton HowTo;
+    private javax.swing.JLabel TriviaTrek;
+    private javax.swing.JButton exit;
+    private javax.swing.JLabel howMuch;
+    private javax.swing.JPanel howToPlay;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel main;
     private javax.swing.JPanel mainPage;
     private javax.swing.JPanel startPage;
+    private javax.swing.JLabel title;
+    private javax.swing.JLabel title1;
+    private javax.swing.JButton toMain;
+    private javax.swing.JButton toStart;
     // End of variables declaration//GEN-END:variables
 }

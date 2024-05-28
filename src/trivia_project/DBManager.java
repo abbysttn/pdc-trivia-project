@@ -19,12 +19,17 @@ public final class DBManager {
 
     private static final String USER_NAME = "triviaUser"; //your DB username
     private static final String PASSWORD = "trivia"; //your DB password
-    private static final String URL = "jdbc:derby://localhost:1527/TriviaGameDB";  //url of the DB host
+    private static final String URL = "jdbc:derby:TriviaGameDB; create=true";  //url of the DB host
 
     Connection conn;
 
     public DBManager() {
         establishConnection();
+    }
+
+    public static void main(String[] args) {
+       DBManager dbManager = new DBManager();
+        System.out.println(dbManager.getConnection());
     }
 
     public Connection getConnection() {
@@ -33,15 +38,13 @@ public final class DBManager {
 
     //Establish connection
     public void establishConnection() {
-        //Establish a connection to Database
-        try {
-            conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-        } catch (SQLException ex) {
-            System.err.println("SQLException: " + ex.getMessage());
+        if (this.conn == null) {
+            try {
+                conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
-        
-        
-        
     }
 
     public void closeConnections() {
@@ -54,35 +57,5 @@ public final class DBManager {
         }
     }
 
-    public ResultSet queryDB(String sql) {
-
-        Connection connection = this.conn;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return resultSet;
-    }
-
-    public void updateDB(String sql) {
-
-        Connection connection = this.conn;
-        Statement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            statement = connection.createStatement();
-            statement.executeUpdate(sql);
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
 }
+

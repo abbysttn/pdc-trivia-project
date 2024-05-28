@@ -6,6 +6,11 @@ package trivia_project;
 
 import java.util.*;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+
 
 /**
  *
@@ -14,6 +19,15 @@ import java.io.*;
 public class highScores {
 
     static TreeMap<Integer, String> highScores = new TreeMap<>(Collections.reverseOrder());
+    private Statement statement;
+    private final DBManager dbManager;
+    private final Connection conn;
+    
+    public highScores() {
+        dbManager = new DBManager();
+        conn = dbManager.getConnection();
+        
+    }
 
     public static void highScoreOptions() { //shows all options that users can do within the highscore area
         Scanner scan = new Scanner(System.in);
@@ -53,24 +67,16 @@ public class highScores {
         }
     }
 
-    public static void newHighScore(int score) { //adds a new highscore for users
-        Scanner scan = new Scanner(System.in);
-
-        System.out.println("Please input a name for the highscore.");
-        String name = scan.nextLine();
-
-        highScores.put(score, name);
-
-        try (
-                 FileWriter fw = new FileWriter("./resources/highScores.txt")) {
-            for (Map.Entry<Integer, String> entry : highScores.entrySet()) {
-                fw.write(entry.getValue() + ": " + entry.getKey() + "\n");
-            }
-        } catch (IOException e) {
-            System.out.println("Error writing to file ");
+    public void newHighScore(String name, int score) { //adds a new highscore for users
+        String insert = "INSERT INTO high_scores (name, score) VALUES (?, ?)";
+        
+        try (PreparedStatement ps = conn.prepareStatement(insert)){
+            ps.setString(1, name);
+            ps.setInt(2, score);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
-
-        printHighScores();
     }
 
     public static void printHighScores() { //prints the top 5 highscores in order
