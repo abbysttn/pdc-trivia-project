@@ -206,7 +206,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
                             case "S":
                                 playerScore.newSingleScore(); //adds a new score to the score array
                                 System.out.println("        Setting up new Trivia game...\n");
-                                customisations.gameCustomisationsSingle(); //asks users what type of game they want to play
+                                //customisations.gameCustomisationsSingle(); //asks users what type of game they want to play
                                 break;
 
                             case "m":

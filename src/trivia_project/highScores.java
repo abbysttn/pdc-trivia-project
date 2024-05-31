@@ -62,21 +62,22 @@ public class highScores {
     public int findHighScore(String name) { //allows users to find a highscore by the name, returns the score for the gui
         try {
             statement = conn.createStatement();
-            String getTop = "SELECT * FROM HIGH_SCORES";
+            String allScores = "SELECT * FROM HIGH_SCORES";
             
-            ResultSet resultSet = statement.executeQuery(getTop);
+            ResultSet resultSet = statement.executeQuery(allScores);
             
             while (resultSet.next()) {
-                if (resultSet.getString("name").equals(name)) {
+                if (resultSet.getString("name").equalsIgnoreCase(name)) {
                     return resultSet.getInt("score");
-                } else {
-                    return -1;
                 }
             }
+            
+            return -1;
             
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
+        
         return -1;
     }
 }
