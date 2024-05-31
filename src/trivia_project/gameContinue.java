@@ -43,7 +43,7 @@ public class gameContinue {
                 } else if (answer.equalsIgnoreCase("n")) {
                     System.out.println("Going back to the main page...\n");
                     run = false;
-                    mainPage.runMainPage();
+                    //mainPage.runMainPage();
                 } else {
                     System.out.println("Invalid response. Please answer with either y or n.");
                 }
@@ -51,7 +51,7 @@ public class gameContinue {
         } else {
             System.out.println("\n\nThere is currently no saved game to continue.");
             System.out.println("Going back to the main page...\n");
-            mainPage.runMainPage();
+            //mainPage.runMainPage();
         }
     }
     
@@ -91,7 +91,7 @@ public class gameContinue {
                 } else if (answer.equalsIgnoreCase("n")) {
                     System.out.println("Going back to the main page...\n");
                     run = false;
-                    mainPage.runMainPage();
+                    //mainPage.runMainPage();
                 } else {
                     System.out.println("Invalid response. Please answer with either y or n.");
                 }
@@ -99,7 +99,7 @@ public class gameContinue {
         } else {
             System.out.println("\n\nThere is currently no saved game to continue.");
             System.out.println("Going back to the main page...\n");
-            mainPage.runMainPage();
+            //mainPage.runMainPage();
         }
     }
 

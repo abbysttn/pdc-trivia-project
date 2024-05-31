@@ -46,6 +46,6 @@ public class howTo {
         
         System.out.println("Good luck!");
         
-        mainPage.runMainPage(); 
+        //mainPage.runMainPage(); 
     }
 }

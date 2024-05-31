@@ -225,7 +225,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
 
                 case "m":
                 case "M":
-                    mainPage.runMainPage(); //runs the main page
+                    //mainPage.runMainPage(); //runs the main page
                     break;
 
                 case "x":

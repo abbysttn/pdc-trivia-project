@@ -109,7 +109,7 @@ public class customisations {
             } else if (answer.equalsIgnoreCase("n")) {
                 run = false;
                 System.out.println("Going back to the main page...\n\n");
-                mainPage.runMainPage();
+                //mainPage.runMainPage();
             } else {
                 System.out.println("\nInvalid input. Please enter eith y or n.");
             }
@@ -129,7 +129,7 @@ public class customisations {
             runGame.quitProgram();
             addToCustom();
         } else if (question.equalsIgnoreCase("m")) {
-            mainPage.runMainPage();
+            //mainPage.runMainPage();
         }
 
         boolean run = true;

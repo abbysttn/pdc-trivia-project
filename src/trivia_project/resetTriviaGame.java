@@ -39,15 +39,15 @@ public class resetTriviaGame {
                             clearAll();
                             System.out.println("\n\nTrivia has been reset.");
                             System.out.println("Going back to the main page...\n\n");
-                            mainPage.runMainPage();
+                            //mainPage.runMainPage();
                         } else {
                             System.out.println("There has been an error in restarting Trivia, please try again later.");
-                            mainPage.runMainPage();
+                            //mainPage.runMainPage();
                         }
                     } else if (confirm.equalsIgnoreCase("n")) {
                         System.out.println("Going back to the main page...\n\n");
                         run = false;
-                        mainPage.runMainPage();
+                        //mainPage.runMainPage();
                     } else {
                         System.out.println("Invalid input. Please enter either y or n.");
                     }
@@ -55,7 +55,7 @@ public class resetTriviaGame {
             } else if (reset.equalsIgnoreCase("n")) {
                 System.out.println("Going back to the main page...\n\n");
                 run = false;
-                mainPage.runMainPage();
+                //mainPage.runMainPage();
             } else {
                 System.out.println("Invalid input. Please enter either y or n.");
             }

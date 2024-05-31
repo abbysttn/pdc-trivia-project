@@ -4,8 +4,10 @@
  */
 package trivia_project;
 
-import java.awt.CardLayout;
-import java.awt.Dimension;
+import java.awt.Color;
+import java.util.Map;
+import javax.swing.JLabel;
+import java.awt.event.KeyEvent;
 
 //commit then push to upstream
 /**
@@ -14,8 +16,9 @@ import java.awt.Dimension;
  */
 public class TriviaFrame extends javax.swing.JFrame {
 
-    
-    
+    public static final Color CUSTOM_BACKGROUND = new Color(247, 237, 226);
+    public static final Color CUSTOM_MAINTEXT = new Color(60, 63, 65);
+
     /**
      * Creates new form TriviaFrame
      */
@@ -49,22 +52,60 @@ public class TriviaFrame extends javax.swing.JFrame {
         exit = new javax.swing.JButton();
         HowTo = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        toHighScores = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         howToPlay = new javax.swing.JPanel();
-        title1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        howToInstruct1 = new javax.swing.JPanel();
+        normalQuestion = new javax.swing.JLabel();
+        question = new javax.swing.JLabel();
+        ans1 = new javax.swing.JButton();
+        ans2 = new javax.swing.JButton();
+        ans3 = new javax.swing.JButton();
+        ans4 = new javax.swing.JButton();
+        toMainHowTo = new javax.swing.JButton();
+        howTo = new javax.swing.JLabel();
+        howToInstruct2 = new javax.swing.JPanel();
+        howTo1 = new javax.swing.JLabel();
+        normalQuestion1 = new javax.swing.JLabel();
+        normalQuestion2 = new javax.swing.JLabel();
+        normalQuestion3 = new javax.swing.JLabel();
+        question1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        question2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        howToInstruct3 = new javax.swing.JPanel();
+        howTo2 = new javax.swing.JLabel();
+        normalQuestion4 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        highscores = new javax.swing.JPanel();
+        title1 = new javax.swing.JLabel();
+        topHighScores = new javax.swing.JLabel();
+        HS1 = new javax.swing.JLabel();
+        HS2 = new javax.swing.JLabel();
+        HS3 = new javax.swing.JLabel();
+        HS4 = new javax.swing.JLabel();
+        HS5 = new javax.swing.JLabel();
+        findHS = new javax.swing.JTextField();
+        toMainHS1 = new javax.swing.JButton();
+        searchHS = new javax.swing.JPanel();
+        title2 = new javax.swing.JLabel();
+        foundHS = new javax.swing.JLabel();
+        toMainHS2 = new javax.swing.JButton();
+        searchedHS = new javax.swing.JLabel();
+        findHS1 = new javax.swing.JTextField();
+        customisations = new javax.swing.JPanel();
+        title3 = new javax.swing.JLabel();
+        topHighScores1 = new javax.swing.JLabel();
+        topHighScores2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        toStart1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(51, 0, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFont(new java.awt.Font("Microsoft YaHei Light", 0, 10)); // NOI18N
         setMinimumSize(new java.awt.Dimension(652, 400));
         setPreferredSize(new java.awt.Dimension(652, 400));
         getContentPane().setLayout(null);
@@ -72,6 +113,7 @@ public class TriviaFrame extends javax.swing.JFrame {
         main.setBackground(new java.awt.Color(200, 213, 185));
         main.setInheritsPopupMenu(true);
         main.setMinimumSize(new java.awt.Dimension(650, 365));
+        main.setPreferredSize(new java.awt.Dimension(650, 365));
         main.setLayout(new java.awt.CardLayout());
 
         startPage.setBackground(new java.awt.Color(247, 237, 226));
@@ -178,14 +220,19 @@ public class TriviaFrame extends javax.swing.JFrame {
         jButton2.setMinimumSize(new java.awt.Dimension(120, 40));
         jButton2.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        jButton3.setBackground(new java.awt.Color(245, 202, 195));
-        jButton3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(61, 82, 77));
-        jButton3.setText("High Scores");
-        jButton3.setBorderPainted(false);
-        jButton3.setMaximumSize(new java.awt.Dimension(120, 40));
-        jButton3.setMinimumSize(new java.awt.Dimension(120, 40));
-        jButton3.setPreferredSize(new java.awt.Dimension(120, 40));
+        toHighScores.setBackground(new java.awt.Color(245, 202, 195));
+        toHighScores.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        toHighScores.setForeground(new java.awt.Color(61, 82, 77));
+        toHighScores.setText("High Scores");
+        toHighScores.setBorderPainted(false);
+        toHighScores.setMaximumSize(new java.awt.Dimension(120, 40));
+        toHighScores.setMinimumSize(new java.awt.Dimension(120, 40));
+        toHighScores.setPreferredSize(new java.awt.Dimension(120, 40));
+        toHighScores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toHighScoresActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(245, 202, 195));
         jButton4.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -195,6 +242,11 @@ public class TriviaFrame extends javax.swing.JFrame {
         jButton4.setMaximumSize(new java.awt.Dimension(120, 40));
         jButton4.setMinimumSize(new java.awt.Dimension(120, 40));
         jButton4.setPreferredSize(new java.awt.Dimension(120, 40));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(245, 202, 195));
         jButton6.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -224,7 +276,7 @@ public class TriviaFrame extends javax.swing.JFrame {
                             .addGroup(mainPageLayout.createSequentialGroup()
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(97, 97, 97)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(toHighScores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(mainPageLayout.createSequentialGroup()
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(97, 97, 97)
@@ -247,7 +299,7 @@ public class TriviaFrame extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(toHighScores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,108 +311,587 @@ public class TriviaFrame extends javax.swing.JFrame {
 
         howToPlay.setBackground(new java.awt.Color(247, 237, 226));
         howToPlay.setMinimumSize(new java.awt.Dimension(650, 365));
+        howToPlay.setPreferredSize(new java.awt.Dimension(650, 365));
+        howToPlay.setLayout(new java.awt.CardLayout());
 
-        title1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
-        title1.setForeground(new java.awt.Color(61, 82, 77));
-        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title1.setText("How To Play");
+        howToInstruct1.setMinimumSize(new java.awt.Dimension(650, 365));
+        howToInstruct1.setOpaque(false);
 
-        jLabel1.setBackground(new java.awt.Color(132, 165, 157));
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(132, 165, 157));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("To answer a question, click the button that you think is the answer.");
+        normalQuestion.setBackground(new java.awt.Color(132, 165, 157));
+        normalQuestion.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        normalQuestion.setForeground(new java.awt.Color(132, 165, 157));
+        normalQuestion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        normalQuestion.setText("To answer a question, click the button that you think is the answer.");
 
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(61, 82, 77));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("This game is called:");
+        question.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        question.setForeground(new java.awt.Color(61, 82, 77));
+        question.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        question.setText("This game is called:");
 
-        jButton5.setBackground(new java.awt.Color(245, 202, 195));
-        jButton5.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(61, 82, 77));
-        jButton5.setText("Cards");
-        jButton5.setBorderPainted(false);
-        jButton5.setMaximumSize(new java.awt.Dimension(120, 40));
-        jButton5.setMinimumSize(new java.awt.Dimension(120, 40));
-        jButton5.setPreferredSize(new java.awt.Dimension(120, 40));
+        ans1.setBackground(new java.awt.Color(245, 202, 195));
+        ans1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        ans1.setForeground(new java.awt.Color(61, 82, 77));
+        ans1.setText("Cards");
+        ans1.setBorderPainted(false);
+        ans1.setMaximumSize(new java.awt.Dimension(120, 40));
+        ans1.setMinimumSize(new java.awt.Dimension(120, 40));
+        ans1.setPreferredSize(new java.awt.Dimension(120, 40));
+        ans1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ans1ActionPerformed(evt);
+            }
+        });
 
-        jButton7.setBackground(new java.awt.Color(245, 202, 195));
-        jButton7.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        ans2.setBackground(new java.awt.Color(245, 202, 195));
+        ans2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        ans2.setForeground(new java.awt.Color(61, 82, 77));
+        ans2.setText("Chess");
+        ans2.setBorderPainted(false);
+        ans2.setMaximumSize(new java.awt.Dimension(120, 40));
+        ans2.setMinimumSize(new java.awt.Dimension(120, 40));
+        ans2.setPreferredSize(new java.awt.Dimension(120, 40));
+        ans2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ans2ActionPerformed(evt);
+            }
+        });
+
+        ans3.setBackground(new java.awt.Color(245, 202, 195));
+        ans3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        ans3.setForeground(new java.awt.Color(61, 82, 77));
+        ans3.setText("Go");
+        ans3.setBorderPainted(false);
+        ans3.setMaximumSize(new java.awt.Dimension(120, 40));
+        ans3.setMinimumSize(new java.awt.Dimension(120, 40));
+        ans3.setPreferredSize(new java.awt.Dimension(120, 40));
+        ans3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ans3ActionPerformed(evt);
+            }
+        });
+
+        ans4.setBackground(new java.awt.Color(245, 202, 195));
+        ans4.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        ans4.setForeground(new java.awt.Color(61, 82, 77));
+        ans4.setText("Trivia Trekker");
+        ans4.setBorderPainted(false);
+        ans4.setMaximumSize(new java.awt.Dimension(120, 40));
+        ans4.setMinimumSize(new java.awt.Dimension(120, 40));
+        ans4.setPreferredSize(new java.awt.Dimension(120, 40));
+        ans4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ans4ActionPerformed(evt);
+            }
+        });
+
+        toMainHowTo.setBackground(new java.awt.Color(255, 204, 102));
+        toMainHowTo.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        toMainHowTo.setForeground(new java.awt.Color(132, 165, 157));
+        toMainHowTo.setText("<");
+        toMainHowTo.setBorderPainted(false);
+        toMainHowTo.setContentAreaFilled(false);
+        toMainHowTo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toMainHowToActionPerformed(evt);
+            }
+        });
+
+        howTo.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        howTo.setForeground(new java.awt.Color(61, 82, 77));
+        howTo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        howTo.setText("How To Play");
+
+        javax.swing.GroupLayout howToInstruct1Layout = new javax.swing.GroupLayout(howToInstruct1);
+        howToInstruct1.setLayout(howToInstruct1Layout);
+        howToInstruct1Layout.setHorizontalGroup(
+            howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(howToInstruct1Layout.createSequentialGroup()
+                .addComponent(toMainHowTo)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(howTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(howToInstruct1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(normalQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(question, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(howToInstruct1Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addGroup(howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ans2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ans3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(120, 120, 120)
+                .addGroup(howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ans4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ans1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        howToInstruct1Layout.setVerticalGroup(
+            howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(howToInstruct1Layout.createSequentialGroup()
+                .addComponent(howTo, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(normalQuestion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(question)
+                .addGap(18, 18, 18)
+                .addGroup(howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ans1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ans2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addGroup(howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ans4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ans3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(toMainHowTo)
+                .addGap(81, 81, 81))
+        );
+
+        howToPlay.add(howToInstruct1, "card3");
+
+        howToInstruct2.setMinimumSize(new java.awt.Dimension(650, 365));
+        howToInstruct2.setOpaque(false);
+        howToInstruct2.setPreferredSize(new java.awt.Dimension(650, 365));
+
+        howTo1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        howTo1.setForeground(new java.awt.Color(61, 82, 77));
+        howTo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        howTo1.setText("How To Play");
+
+        normalQuestion1.setBackground(new java.awt.Color(132, 165, 157));
+        normalQuestion1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        normalQuestion1.setForeground(new java.awt.Color(132, 165, 157));
+        normalQuestion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        normalQuestion1.setText("Once a game, you'll come across a special question.");
+
+        normalQuestion2.setBackground(new java.awt.Color(132, 165, 157));
+        normalQuestion2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        normalQuestion2.setForeground(new java.awt.Color(132, 165, 157));
+        normalQuestion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        normalQuestion2.setText("When playing Multiplayer, one player has the chance to get this.");
+
+        normalQuestion3.setBackground(new java.awt.Color(132, 165, 157));
+        normalQuestion3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        normalQuestion3.setForeground(new java.awt.Color(132, 165, 157));
+        normalQuestion3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        normalQuestion3.setText("To answer this question, type in the answer e.g. 'Eggs' and click \"Ok\".");
+
+        question1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        question1.setForeground(new java.awt.Color(61, 82, 77));
+        question1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        question1.setText("Special Question!");
+
+        jTextField1.setBackground(new java.awt.Color(245, 202, 195));
+        jTextField1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(61, 82, 77));
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("Answer here!");
+        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 204, 102), 1, true));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        question2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
+        question2.setForeground(new java.awt.Color(61, 82, 77));
+        question2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        question2.setText("What section is this called?");
+
+        jButton1.setBackground(new java.awt.Color(255, 204, 102));
+        jButton1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(61, 82, 77));
+        jButton1.setText("Ok");
+        jButton1.setBorderPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout howToInstruct2Layout = new javax.swing.GroupLayout(howToInstruct2);
+        howToInstruct2.setLayout(howToInstruct2Layout);
+        howToInstruct2Layout.setHorizontalGroup(
+            howToInstruct2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(normalQuestion3, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addGroup(howToInstruct2Layout.createSequentialGroup()
+                .addGroup(howToInstruct2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(howToInstruct2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(howToInstruct2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(howTo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(normalQuestion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(normalQuestion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(question1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(question2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(howToInstruct2Layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(howToInstruct2Layout.createSequentialGroup()
+                .addGap(297, 297, 297)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        howToInstruct2Layout.setVerticalGroup(
+            howToInstruct2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(howToInstruct2Layout.createSequentialGroup()
+                .addComponent(howTo1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(normalQuestion1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(normalQuestion2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(normalQuestion3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(question1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(question2)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(0, 38, Short.MAX_VALUE))
+        );
+
+        howToPlay.add(howToInstruct2, "card3");
+
+        howToInstruct3.setOpaque(false);
+
+        howTo2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        howTo2.setForeground(new java.awt.Color(61, 82, 77));
+        howTo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        howTo2.setText("How To Play");
+
+        normalQuestion4.setBackground(new java.awt.Color(132, 165, 157));
+        normalQuestion4.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        normalQuestion4.setForeground(new java.awt.Color(132, 165, 157));
+        normalQuestion4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        normalQuestion4.setText("If you answer 3 or more questions in a row, you get extra points!");
+
+        jButton7.setBackground(new java.awt.Color(255, 204, 102));
+        jButton7.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
         jButton7.setForeground(new java.awt.Color(61, 82, 77));
-        jButton7.setText("Chess");
+        jButton7.setText("Good Luck!");
+        jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jButton7.setBorderPainted(false);
         jButton7.setMaximumSize(new java.awt.Dimension(120, 40));
         jButton7.setMinimumSize(new java.awt.Dimension(120, 40));
         jButton7.setPreferredSize(new java.awt.Dimension(120, 40));
-
-        jButton8.setBackground(new java.awt.Color(245, 202, 195));
-        jButton8.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(61, 82, 77));
-        jButton8.setText("Go");
-        jButton8.setBorderPainted(false);
-        jButton8.setMaximumSize(new java.awt.Dimension(120, 40));
-        jButton8.setMinimumSize(new java.awt.Dimension(120, 40));
-        jButton8.setPreferredSize(new java.awt.Dimension(120, 40));
-
-        jButton9.setBackground(new java.awt.Color(245, 202, 195));
-        jButton9.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(61, 82, 77));
-        jButton9.setText("Trivia Trekker");
-        jButton9.setBorderPainted(false);
-        jButton9.setMaximumSize(new java.awt.Dimension(120, 40));
-        jButton9.setMinimumSize(new java.awt.Dimension(120, 40));
-        jButton9.setPreferredSize(new java.awt.Dimension(120, 40));
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                jButton7ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout howToPlayLayout = new javax.swing.GroupLayout(howToPlay);
-        howToPlay.setLayout(howToPlayLayout);
-        howToPlayLayout.setHorizontalGroup(
-            howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, howToPlayLayout.createSequentialGroup()
+        javax.swing.GroupLayout howToInstruct3Layout = new javax.swing.GroupLayout(howToInstruct3);
+        howToInstruct3.setLayout(howToInstruct3Layout);
+        howToInstruct3Layout.setHorizontalGroup(
+            howToInstruct3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(howToInstruct3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(title1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(howToInstruct3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(howTo2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(normalQuestion4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, howToPlayLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(howToPlayLayout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(howToPlayLayout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(146, 146, 146))
+            .addGroup(howToInstruct3Layout.createSequentialGroup()
+                .addGap(269, 269, 269)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        howToPlayLayout.setVerticalGroup(
-            howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(howToPlayLayout.createSequentialGroup()
-                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+        howToInstruct3Layout.setVerticalGroup(
+            howToInstruct3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(howToInstruct3Layout.createSequentialGroup()
+                .addComponent(howTo2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72)
+                .addComponent(normalQuestion4)
                 .addGap(33, 33, 33)
-                .addComponent(jLabel2)
-                .addGap(48, 48, 48)
-                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(howToPlayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 123, Short.MAX_VALUE))
         );
 
+        howToPlay.add(howToInstruct3, "card4");
+
         main.add(howToPlay, "card4");
+
+        highscores.setBackground(new java.awt.Color(247, 237, 226));
+        highscores.setMinimumSize(new java.awt.Dimension(650, 365));
+
+        title1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        title1.setForeground(new java.awt.Color(61, 82, 77));
+        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1.setText("High Scores");
+
+        topHighScores.setBackground(new java.awt.Color(132, 165, 157));
+        topHighScores.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        topHighScores.setForeground(new java.awt.Color(132, 165, 157));
+        topHighScores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        topHighScores.setText("Top 5 High Scores:");
+
+        HS1.setBackground(new java.awt.Color(61, 82, 77));
+        HS1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        HS1.setForeground(new java.awt.Color(61, 82, 77));
+        HS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HS1.setText("1. ");
+
+        HS2.setBackground(new java.awt.Color(61, 82, 77));
+        HS2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        HS2.setForeground(new java.awt.Color(61, 82, 77));
+        HS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HS2.setText("2. ");
+
+        HS3.setBackground(new java.awt.Color(61, 82, 77));
+        HS3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        HS3.setForeground(new java.awt.Color(61, 82, 77));
+        HS3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HS3.setText("3. ");
+
+        HS4.setBackground(new java.awt.Color(61, 82, 77));
+        HS4.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        HS4.setForeground(new java.awt.Color(61, 82, 77));
+        HS4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HS4.setText("4. ");
+
+        HS5.setBackground(new java.awt.Color(61, 82, 77));
+        HS5.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        HS5.setForeground(new java.awt.Color(61, 82, 77));
+        HS5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HS5.setText("5. ");
+
+        findHS.setBackground(new java.awt.Color(246, 189, 96));
+        findHS.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        findHS.setForeground(new java.awt.Color(61, 82, 77));
+        findHS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        findHS.setText("Search for score here!");
+        findHS.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(245, 202, 195), 1, true));
+        findHS.setMinimumSize(new java.awt.Dimension(150, 40));
+        findHS.setPreferredSize(new java.awt.Dimension(150, 40));
+        findHS.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                findHSKeyPressed(evt);
+            }
+        });
+
+        toMainHS1.setBackground(new java.awt.Color(255, 204, 102));
+        toMainHS1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        toMainHS1.setForeground(new java.awt.Color(132, 165, 157));
+        toMainHS1.setText("<");
+        toMainHS1.setBorderPainted(false);
+        toMainHS1.setContentAreaFilled(false);
+        toMainHS1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toMainHS1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout highscoresLayout = new javax.swing.GroupLayout(highscores);
+        highscores.setLayout(highscoresLayout);
+        highscoresLayout.setHorizontalGroup(
+            highscoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(HS1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(highscoresLayout.createSequentialGroup()
+                .addGroup(highscoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(highscoresLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(highscoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                            .addComponent(topHighScores, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                            .addComponent(HS2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(HS3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(HS4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(HS5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(highscoresLayout.createSequentialGroup()
+                        .addComponent(toMainHS1)
+                        .addGap(206, 206, 206)
+                        .addComponent(findHS, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        highscoresLayout.setVerticalGroup(
+            highscoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(highscoresLayout.createSequentialGroup()
+                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(topHighScores)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HS1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HS2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HS3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HS4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(HS5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(highscoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(toMainHS1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, highscoresLayout.createSequentialGroup()
+                        .addComponent(findHS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
+        );
+
+        main.add(highscores, "card5");
+
+        searchHS.setBackground(new java.awt.Color(247, 237, 226));
+        searchHS.setMinimumSize(new java.awt.Dimension(650, 365));
+        searchHS.setPreferredSize(new java.awt.Dimension(650, 365));
+
+        title2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        title2.setForeground(new java.awt.Color(61, 82, 77));
+        title2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title2.setText("High Scores");
+
+        foundHS.setBackground(new java.awt.Color(132, 165, 157));
+        foundHS.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        foundHS.setForeground(new java.awt.Color(132, 165, 157));
+        foundHS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foundHS.setText("Here is the found high score:");
+
+        toMainHS2.setBackground(new java.awt.Color(255, 204, 102));
+        toMainHS2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        toMainHS2.setForeground(new java.awt.Color(132, 165, 157));
+        toMainHS2.setText("<");
+        toMainHS2.setBorderPainted(false);
+        toMainHS2.setContentAreaFilled(false);
+        toMainHS2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toMainHS2ActionPerformed(evt);
+            }
+        });
+
+        searchedHS.setBackground(new java.awt.Color(61, 82, 77));
+        searchedHS.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        searchedHS.setForeground(new java.awt.Color(61, 82, 77));
+        searchedHS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        searchedHS.setText("1. ");
+
+        findHS1.setBackground(new java.awt.Color(246, 189, 96));
+        findHS1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        findHS1.setForeground(new java.awt.Color(61, 82, 77));
+        findHS1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        findHS1.setText("Search for another score?");
+        findHS1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(245, 202, 195), 1, true));
+        findHS1.setMinimumSize(new java.awt.Dimension(150, 40));
+        findHS1.setPreferredSize(new java.awt.Dimension(150, 40));
+        findHS1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                findHS1KeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout searchHSLayout = new javax.swing.GroupLayout(searchHS);
+        searchHS.setLayout(searchHSLayout);
+        searchHSLayout.setHorizontalGroup(
+            searchHSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchHSLayout.createSequentialGroup()
+                .addComponent(toMainHS2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(searchHSLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(searchHSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title2, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(foundHS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(searchedHS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(searchHSLayout.createSequentialGroup()
+                .addGap(249, 249, 249)
+                .addComponent(findHS1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        searchHSLayout.setVerticalGroup(
+            searchHSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchHSLayout.createSequentialGroup()
+                .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(foundHS)
+                .addGap(36, 36, 36)
+                .addComponent(searchedHS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(findHS1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(toMainHS2))
+        );
+
+        main.add(searchHS, "card6");
+
+        customisations.setBackground(new java.awt.Color(247, 237, 226));
+        customisations.setMinimumSize(new java.awt.Dimension(650, 365));
+        customisations.setPreferredSize(new java.awt.Dimension(650, 365));
+
+        title3.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
+        title3.setForeground(new java.awt.Color(61, 82, 77));
+        title3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title3.setText("Customisations");
+
+        topHighScores1.setBackground(new java.awt.Color(132, 165, 157));
+        topHighScores1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        topHighScores1.setForeground(new java.awt.Color(132, 165, 157));
+        topHighScores1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        topHighScores1.setText("Enter your custom questions here!");
+
+        topHighScores2.setBackground(new java.awt.Color(132, 165, 157));
+        topHighScores2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        topHighScores2.setForeground(new java.awt.Color(132, 165, 157));
+        topHighScores2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        topHighScores2.setText("Note: if you would like to use these questions in game, enter at least 5.");
+
+        jTextField2.setBackground(new java.awt.Color(246, 189, 96));
+        jTextField2.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(61, 82, 77));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("Enter the question here!");
+        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(245, 202, 195), 1, true));
+        jTextField2.setMinimumSize(new java.awt.Dimension(200, 40));
+        jTextField2.setPreferredSize(new java.awt.Dimension(200, 40));
+
+        toStart1.setBackground(new java.awt.Color(255, 204, 102));
+        toStart1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        toStart1.setForeground(new java.awt.Color(132, 165, 157));
+        toStart1.setText("<");
+        toStart1.setBorderPainted(false);
+        toStart1.setContentAreaFilled(false);
+        toStart1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toStart1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout customisationsLayout = new javax.swing.GroupLayout(customisations);
+        customisations.setLayout(customisationsLayout);
+        customisationsLayout.setHorizontalGroup(
+            customisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customisationsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(customisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(title3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(topHighScores1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addComponent(topHighScores2, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(customisationsLayout.createSequentialGroup()
+                .addGap(236, 236, 236)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(customisationsLayout.createSequentialGroup()
+                .addComponent(toStart1)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        customisationsLayout.setVerticalGroup(
+            customisationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customisationsLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(topHighScores1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(topHighScores2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(toStart1))
+        );
+
+        main.add(customisations, "card7");
 
         getContentPane().add(main);
         main.setBounds(0, 0, 0, 0);
@@ -386,18 +917,20 @@ public class TriviaFrame extends javax.swing.JFrame {
         main.revalidate();
     }//GEN-LAST:event_toStartActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void ans4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ans4ActionPerformed
         // TODO add your handling code here:
-        howToPlay.remove(jLabel1);
-        howToPlay.remove(jLabel2);
+        howToPlay.remove(howToInstruct1);
         howToPlay.repaint();
         howToPlay.revalidate();
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_ans4ActionPerformed
 
     private void HowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HowToActionPerformed
         // TODO add your handling code here:
         main.removeAll();
         main.add(howToPlay);
+        howToPlay.add(howToInstruct1);
+        howToPlay.add(howToInstruct2);
+        howToPlay.add(howToInstruct3);
         main.repaint();
         main.revalidate();
     }//GEN-LAST:event_HowToActionPerformed
@@ -407,32 +940,243 @@ public class TriviaFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
+    private void toMainHowToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toMainHowToActionPerformed
+        // TODO add your handling code here:
+
+        main.removeAll();
+        main.add(mainPage);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_toMainHowToActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        howToPlay.remove(howToInstruct2);
+        howToPlay.repaint();
+        howToPlay.revalidate();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        main.removeAll();
+        main.add(mainPage);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void ans1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ans1ActionPerformed
+        // TODO add your handling code here:
+        howToPlay.remove(howToInstruct1);
+        howToPlay.repaint();
+        howToPlay.revalidate();
+    }//GEN-LAST:event_ans1ActionPerformed
+
+    private void ans2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ans2ActionPerformed
+        // TODO add your handling code here:
+        howToPlay.remove(howToInstruct1);
+        howToPlay.repaint();
+        howToPlay.revalidate();
+    }//GEN-LAST:event_ans2ActionPerformed
+
+    private void ans3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ans3ActionPerformed
+        // TODO add your handling code here:
+        howToPlay.remove(howToInstruct1);
+        howToPlay.repaint();
+        howToPlay.revalidate();
+    }//GEN-LAST:event_ans3ActionPerformed
+
+    private void toHighScoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toHighScoresActionPerformed
+        // TODO add your handling code here:
+        updateHighScores();
+        main.removeAll();
+        main.add(highscores);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_toHighScoresActionPerformed
+
+    private void findHSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_findHSKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            findHighScores(findHS.getText());
+
+            findHS.setText("Search for another score?");
+            main.removeAll();
+            main.add(searchHS);
+            main.repaint();
+            main.revalidate();
+        }
+
+    }//GEN-LAST:event_findHSKeyPressed
+
+    private void toMainHS1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toMainHS1ActionPerformed
+        // TODO add your handling code here:
+        main.removeAll();
+        main.add(mainPage);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_toMainHS1ActionPerformed
+
+    private void toMainHS2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toMainHS2ActionPerformed
+        // TODO add your handling code here:
+        main.removeAll();
+        main.add(highscores);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_toMainHS2ActionPerformed
+
+    private void findHS1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_findHS1KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            findHighScores(findHS1.getText());
+
+            findHS1.setText("Search for another score?");
+            main.repaint();
+            main.revalidate();
+        }
+    }//GEN-LAST:event_findHS1KeyPressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        main.removeAll();
+        main.add(customisations);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void toStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toStart1ActionPerformed
+        // TODO add your handling code here:
+        main.removeAll();
+        main.add(mainPage);
+        main.repaint();
+        main.revalidate();
+    }//GEN-LAST:event_toStart1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    private void findHighScores(String name) {
+        highScores hs = new highScores();
+
+        if (hs.findHighScore(name) == -1) {
+            foundHS.setText("No score found for that name.");
+            searchedHS.setText("-");
+        } else {
+            int score = hs.findHighScore(name);
+
+            foundHS.setText("Here is the score found for " + name);
+            searchedHS.setText(name + ": " + score);
+        }
+
+    }
+
+    private void updateHighScores() {
+        highScores hs = new highScores();
+        hs.getHighScores();
+
+        int index = 1;
+
+        for (Map.Entry<Integer, String> entry : highScores.topHighScores.entrySet()) {
+            if (index <= 5) {
+                int score = entry.getKey();
+                String playerName = entry.getValue();
+
+                JLabel label = getJLabelForIndex(index);
+
+                label.setText(index + ". " + playerName + ": " + score);
+
+                index++;
+            } else {
+                break;
+            }
+        }
+    }
+
+    private JLabel getJLabelForIndex(int index) {
+        switch (index) {
+            case 1:
+                return HS1;
+
+            case 2:
+                return HS2;
+
+            case 3:
+                return HS3;
+
+            case 4:
+                return HS4;
+
+            case 5:
+                return HS5;
+
+            default:
+                return null;
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel HS1;
+    private javax.swing.JLabel HS2;
+    private javax.swing.JLabel HS3;
+    private javax.swing.JLabel HS4;
+    private javax.swing.JLabel HS5;
     private javax.swing.JButton HowTo;
     private javax.swing.JLabel TriviaTrek;
+    private javax.swing.JButton ans1;
+    private javax.swing.JButton ans2;
+    private javax.swing.JButton ans3;
+    private javax.swing.JButton ans4;
+    private javax.swing.JPanel customisations;
     private javax.swing.JButton exit;
+    private javax.swing.JTextField findHS;
+    private javax.swing.JTextField findHS1;
+    private javax.swing.JLabel foundHS;
+    private javax.swing.JPanel highscores;
     private javax.swing.JLabel howMuch;
+    private javax.swing.JLabel howTo;
+    private javax.swing.JLabel howTo1;
+    private javax.swing.JLabel howTo2;
+    private javax.swing.JPanel howToInstruct1;
+    private javax.swing.JPanel howToInstruct2;
+    private javax.swing.JPanel howToInstruct3;
     private javax.swing.JPanel howToPlay;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel main;
     private javax.swing.JPanel mainPage;
+    private javax.swing.JLabel normalQuestion;
+    private javax.swing.JLabel normalQuestion1;
+    private javax.swing.JLabel normalQuestion2;
+    private javax.swing.JLabel normalQuestion3;
+    private javax.swing.JLabel normalQuestion4;
+    private javax.swing.JLabel question;
+    private javax.swing.JLabel question1;
+    private javax.swing.JLabel question2;
+    private javax.swing.JPanel searchHS;
+    private javax.swing.JLabel searchedHS;
     private javax.swing.JPanel startPage;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
+    private javax.swing.JLabel title2;
+    private javax.swing.JLabel title3;
+    private javax.swing.JButton toHighScores;
     private javax.swing.JButton toMain;
+    private javax.swing.JButton toMainHS1;
+    private javax.swing.JButton toMainHS2;
+    private javax.swing.JButton toMainHowTo;
     private javax.swing.JButton toStart;
+    private javax.swing.JButton toStart1;
+    private javax.swing.JLabel topHighScores;
+    private javax.swing.JLabel topHighScores1;
+    private javax.swing.JLabel topHighScores2;
     // End of variables declaration//GEN-END:variables
 }
