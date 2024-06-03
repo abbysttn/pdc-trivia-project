@@ -60,7 +60,7 @@ public class multiplayerGame extends Game { //subclass of Game
         
         playerScore.newMultiScore(game.getPlayers().size());
         
-        randomGamesQuestions();
+        game.randomGamesQuestions();
         game.askQuestions();
     }
     

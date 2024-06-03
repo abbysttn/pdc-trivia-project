@@ -24,7 +24,7 @@ public class singlePlayerGame extends Game { //subclass of Game
         singlePlayerGame game = new singlePlayerGame();
         System.out.println("            A new Trivia Game is starting...\n");
         System.out.println("To answer a question type in the letter of the answer (a/b/c/d). Press 'x' at any time to leave the game.\n\n");
-        randomGamesQuestions();
+        game.randomGamesQuestions();
         game.askQuestions();
     }
 
