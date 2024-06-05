@@ -26,38 +26,26 @@ public class playerScore {
     
     public static void addToScoreSingle() { //adds 10 points to the single players score
         scores.set(0, scores.get(0) + 10);
-        
-        System.out.println("Current Score is " + scores.get(0) + "\n");
     }
     
     public static void addToScoreSingleStreak() { //adds 30 points to the single players score after a streak of 3 has been achieved
         scores.set(0, scores.get(0) + 30);
-        
-        System.out.println("Current Score is " + scores.get(0) + "\n");
     }
     
     public static void addToScoreSingleSpecial() { //adds 100 points to the players score for getting the written question correct
         scores.set(0, scores.get(0) + 100);
-        
-        System.out.println("Current Score is " + scores.get(0) + "\n");
     }
     
     public static void addToMultiScore(int index, String player) { // adds 10 points to the current players score
         scores.set(index, scores.get(index) + 10);
-        
-        System.out.println(player + "'s current Score is " + scores.get(index) + "\n");
     }
     
     public static void addToMultiScoreStreak(int index, String player) { //adds 30 points to the current players score after a streak of 3 has been achieved
         scores.set(index, scores.get(index) + 30);
-        
-        System.out.println(player + "'s current Score is " + scores.get(index) + "\n");
     }
     
     public static void addToMultiScoreSpecial(int index, String player) { //adds 100 points to the current players score after getting the written question correct
         scores.set(index, scores.get(index) + 100);
-        
-        System.out.println(player + "'s current Score is " + scores.get(index) + "\n");
     }
     
     public static void minusScore() { //removes 10 points from the single players score
@@ -67,8 +55,6 @@ public class playerScore {
         } else {
             scores.set(0, 0);
         }
-        
-        System.out.println("Current Score is " + scores.get(0) + "\n");
     }
     
     public static void minusScoreMulti(int index, String player) { //removes 10 points from the current players score
@@ -78,7 +64,5 @@ public class playerScore {
         } else {
             scores.set(index, 0);
         }
-        
-        System.out.println(player + "'s current Score is " + scores.get(index) + "\n");
     }
 }

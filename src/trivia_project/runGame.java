@@ -18,6 +18,7 @@ public class runGame {
         dbManager.getConnection();
         
         
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TriviaFrame().setVisible(true);

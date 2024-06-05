@@ -96,7 +96,7 @@ public class singlePlayerGame extends Game { //subclass of Game
         gameFinished(playerScore.scores);
     }
 
-    @Override
+    /*@Override
     public boolean checkAnswer(String correctAnswer) { // checks if the user inputted answer is correct
         Scanner scan = new Scanner(System.in);
 
@@ -130,5 +130,5 @@ public class singlePlayerGame extends Game { //subclass of Game
             checkAnswer(correctAnswer);
         }
         return false;
-    }
+    }*/
 }

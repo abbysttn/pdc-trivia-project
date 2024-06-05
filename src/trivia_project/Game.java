@@ -41,8 +41,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
 
     public abstract void askQuestions();
 
-    public abstract boolean checkAnswer(String correctAnswer);
-
     public boolean checkCustomQuestions() {
 
         int customQs = 0;
@@ -86,23 +84,43 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         return question;
     }
     
-    public String getCorrectAnswer(int id) {
-        String answer = "";
+    public List<String> getAnswers(int id) {
+        List<String> answers = new ArrayList<>();
         
         try {
             statement = conn.createStatement();
-            String getCategory = "SELECT * FROM ANSWERS WHERE QUESTIONID = " + id + " AND ISCORRECT = TRUE";
+            String getCategory = "SELECT * FROM ANSWERS WHERE QUESTIONID = " + id;
             
             ResultSet resultSet = statement.executeQuery(getCategory);
             
-            if (resultSet.next()) {
-            answer += resultSet.getString("ANSWERTEXT");
+            while (resultSet.next()) {
+            answers.add(resultSet.getString("ANSWERTEXT"));
             }
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
         
-        return answer;
+        Collections.shuffle(answers);
+        return answers;
+    }
+    
+    public boolean checkAnswer(String answer) {
+        boolean isCorrect = false;
+        
+        try {
+            statement = conn.createStatement();
+            String getCategory = "SELECT * FROM ANSWERS WHERE ANSWERTEXT = \'" + answer + "\'";
+            
+            ResultSet resultSet = statement.executeQuery(getCategory);
+            
+            if (resultSet.next()) {
+            isCorrect = resultSet.getBoolean("ISCORRECT");
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+        
+        return isCorrect;
     }
     
     public String getCategory(int id) {
