@@ -35,6 +35,30 @@ public class customisations {
             System.err.println("SQLException: " + ex.getMessage());
         }
     }
+    
+    public boolean checkCustomQuestions() {
+
+        int customQs = 0;
+
+        try {
+            statement = conn.createStatement();
+            String getCustom = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'CUSTOM\'";
+
+            ResultSet resultSet = statement.executeQuery(getCustom);
+
+            while (resultSet.next()) {
+                customQs++;
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+
+        if (customQs >= 5) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private int getQuestionID(String question) {
         try {

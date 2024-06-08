@@ -18,12 +18,11 @@ public class runGame {
         dbManager.getConnection();
         
         
+        TriviaModel model = new TriviaModel();
+        TriviaView view = new TriviaView();
+        TriviaController controller = new TriviaController(model, view);
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TriviaFrame().setVisible(true);
-            }
-        });
+        view.setVisible(true);
         
     }
 

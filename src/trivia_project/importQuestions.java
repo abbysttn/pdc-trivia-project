@@ -4,18 +4,14 @@
  */
 package trivia_project;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import static trivia_project.Game.randomGameQuestions;
 
 /**
  *
@@ -23,447 +19,223 @@ import static trivia_project.Game.randomGameQuestions;
  */
 public class importQuestions {
 
-    static HashMap<String, List<String>> historyQuestions = new HashMap();
-    static HashMap<String, List<String>> artsQuestions = new HashMap();
-    static HashMap<String, List<String>> scienceQuestions = new HashMap();
-    static HashMap<String, List<String>> sportsQuestions = new HashMap();
-    static HashMap<String, List<String>> geographyQuestions = new HashMap();
-    static HashMap<String, List<String>> customQuestions = new HashMap();
-    static HashMap<String, String> writtenQuestions = new HashMap();
+    private Statement statement;
+    private final DBManager dbManager;
+    private final Connection conn;
+    
+    private List<String> selectedTopics = new ArrayList<>();
 
-    public void importHistoryQuestions() { //imports the history questions into the historyQuestions hashmap
+    public importQuestions() {
+        dbManager = new DBManager();
+        conn = dbManager.getConnection();
+    }
+
+    public void importCategory(List<String> categorys) {
+        for (String category : categorys) {
+        selectedTopics.add(category);
+        }
+    }
+
+    public void importQuestions() { //imports the history questions into the historyQuestions hashmap
         try {
-            FileReader fr = new FileReader("./resources/HistoryQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
+            for (String category : selectedTopics) {
+                String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'" + category + "\'";
+                
+                ResultSet resultSet = statement.executeQuery(getQs);
+                
+                List<Integer> questions = new ArrayList<>();
+                
+                while (resultSet.next()) {
+                    int questionID = resultSet.getInt("id");
+                    
+                    questions.add(questionID);
                 }
-
-                historyQuestions.put(question, options);
+                
+                Collections.shuffle(questions);
+                
+                for (int i = 0; i < 5; i++) {
+                    String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(i) + ")";
+                    statement.executeUpdate(importQs);
+                }
             }
-
-            inputStream.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 
     public void importArtsQuestions() { //imports the arts questions into the artsQuestions hashmap
         try {
-            FileReader fr = new FileReader("./resources/ArtsQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
+            String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Arts\'";
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
-                }
+            ResultSet resultSet = statement.executeQuery(getQs);
 
-                artsQuestions.put(question, options);
+            List<Integer> questions = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int questionID = resultSet.getInt("id");
+
+                questions.add(questionID);
             }
 
-            inputStream.close();
+            Collections.shuffle(questions);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+            for (int i = 0; i < 5; i++) {
+                String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(i) + ")";
+                statement.executeUpdate(importQs);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 
     public void importScienceQuestions() { //imports the science questions into the scienceQuestions hashmap
         try {
-            FileReader fr = new FileReader("./resources/ScienceQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
+            String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Science\'";
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
-                }
+            ResultSet resultSet = statement.executeQuery(getQs);
 
-                scienceQuestions.put(question, options);
+            List<Integer> questions = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int questionID = resultSet.getInt("id");
+
+                questions.add(questionID);
             }
 
-            inputStream.close();
+            Collections.shuffle(questions);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+            for (int i = 0; i < 5; i++) {
+                String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(i) + ")";
+                statement.executeUpdate(importQs);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 
     public void importSportsQuestions() { //imports the sports questions into the sportsQuestions hashmap
         try {
-            FileReader fr = new FileReader("./resources/SportsQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
+            String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Sports\'";
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
-                }
+            ResultSet resultSet = statement.executeQuery(getQs);
 
-                sportsQuestions.put(question, options);
+            List<Integer> questions = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int questionID = resultSet.getInt("id");
+
+                questions.add(questionID);
             }
 
-            inputStream.close();
+            Collections.shuffle(questions);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+            for (int i = 0; i < 5; i++) {
+                String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(i) + ")";
+                statement.executeUpdate(importQs);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 
     public void importGeographyQuestions() { //imports the geography questions into the geographyQuestions hashmap
         try {
-            FileReader fr = new FileReader("./resources/GeographyQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
+            String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Geography\'";
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
-                }
+            ResultSet resultSet = statement.executeQuery(getQs);
 
-                geographyQuestions.put(question, options);
+            List<Integer> questions = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int questionID = resultSet.getInt("id");
+
+                questions.add(questionID);
             }
 
-            inputStream.close();
+            Collections.shuffle(questions);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+            for (int i = 0; i < 5; i++) {
+                String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(i) + ")";
+                statement.executeUpdate(importQs);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 
     public void importCustomQuestions() { //imports the custom questions into the customQuestions hashmap
         try {
-            FileReader fr = new FileReader("./resources/CustomQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
+            String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Custom\'";
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0].trim();
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i].trim());
-                }
+            ResultSet resultSet = statement.executeQuery(getQs);
 
-                customQuestions.put(question, options);
+            List<Integer> questions = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int questionID = resultSet.getInt("id");
+
+                questions.add(questionID);
             }
 
-            inputStream.close();
+            Collections.shuffle(questions);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+            for (int i = 0; i < 5; i++) {
+                String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(i) + ")";
+                statement.executeUpdate(importQs);
+
+            }
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
-    
-        public static void importWrittenQuestions() { //imports all written quesitons
+
+    public void getWrittenQuestion() {
         try {
-            FileReader fr = new FileReader("./resources/TriviaHardQs.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
+            statement = conn.createStatement();
+            String clearTable = "DELETE FROM CURRENTGAMEQS";
+            statement.executeUpdate(clearTable);
+            String getQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Written\'";
 
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\| ");
-                String question = questionAndAnswers[0];
-                String answer = questionAndAnswers[1];
-                
+            ResultSet resultSet = statement.executeQuery(getQs);
 
-                writtenQuestions.put(question, answer);
+            List<Integer> questions = new ArrayList<>();
+
+            while (resultSet.next()) {
+                int questionID = resultSet.getInt("id");
+
+                questions.add(questionID);
             }
 
-            inputStream.close();
+            Collections.shuffle(questions);
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
+            String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(0) + ")";
+            statement.executeUpdate(importQs);
+
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
-    
-    public static void exportCustomQuestions() {  //exports the custom questions to the CustomQs file
-        try (
-                 FileWriter fw = new FileWriter("./resources/CustomQs.txt")) {
-            for (Map.Entry<String, List<String>> entry : customQuestions.entrySet()) {
-                StringBuilder line = new StringBuilder(entry.getKey() + " | ");
-                List<String> answers = entry.getValue();
-                for (String ans : answers) {
-                    line.append(ans).append(" | ");
-                }
-                line.delete(line.length() - 3, line.length());
-                fw.write(line.toString() + "\n");
-            }
-            
-            importQuestions.customQuestions.clear();
-
-        } catch (IOException e) {
-            System.out.println("Error writing to file ");
-        }
-    }
-    
-    public static void customImportHistory() { //imports random history questions into the randomGameQuestions hashmap
-        importQuestions iq = new importQuestions();
-        iq.importHistoryQuestions();
-        List<String> hist = new ArrayList<>(historyQuestions.keySet());
-        Collections.shuffle(hist);
-
-        int qCount = 0;
-
-        for (String str : hist) {
-            if (qCount == 5) {
-                break;
-            }
-            randomGameQuestions.put(str, historyQuestions.get(str));
-            qCount++;
-        }
-    }
-
-    public static void customImportArts() { //imports random arts questions into the randomGameQuestions hashmap
-        importQuestions iq = new importQuestions();
-        iq.importArtsQuestions();
-        List<String> art = new ArrayList<>(artsQuestions.keySet());
-        Collections.shuffle(art);
-
-        int qCount = 0;
-
-        for (String str : art) {
-            if (qCount == 5) {
-                break;
-            }
-            randomGameQuestions.put(str, artsQuestions.get(str));
-            qCount++;
-        }
-    }
-
-    public static void customImportScience() { //imports random science questions into the randomGameQuestions hashmap
-        importQuestions iq = new importQuestions();
-        iq.importScienceQuestions();
-        List<String> sci = new ArrayList<>(scienceQuestions.keySet());
-        Collections.shuffle(sci);
-
-        int qCount = 0;
-
-        for (String str : sci) {
-            if (qCount == 5) {
-                break;
-            }
-            randomGameQuestions.put(str, scienceQuestions.get(str));
-            qCount++;
-        }
-    }
-
-    public static void customImportSports() { //imports random sports questions into the randomGameQuestions hashmap
-        importQuestions iq = new importQuestions();
-        iq.importSportsQuestions();
-        List<String> sprt = new ArrayList<>(sportsQuestions.keySet());
-        Collections.shuffle(sprt);
-
-        int qCount = 0;
-
-        for (String str : sprt) {
-            if (qCount == 5) {
-                break;
-            }
-            randomGameQuestions.put(str, sportsQuestions.get(str));
-            qCount++;
-        }
-    }
-
-    public static void customImportGeography() { //imports random geography questions into the randomGameQuestions hashmap
-        importQuestions iq = new importQuestions();
-        iq.importGeographyQuestions();
-        List<String> geo = new ArrayList<>(geographyQuestions.keySet());
-        Collections.shuffle(geo);
-
-        int qCount = 0;
-
-        for (String str : geo) {
-            if (qCount == 5) {
-                break;
-            }
-            randomGameQuestions.put(str, geographyQuestions.get(str));
-            qCount++;
-        }
-    }
-    
-    
-    public static void customImportCustom() { //imports random custom questions into the randomGameQuestions hashmap
-        importQuestions iq = new importQuestions();
-        iq.importCustomQuestions();
-        List<String> cust = new ArrayList<>(customQuestions.keySet());
-        Collections.shuffle(cust);
-
-        int qCount = 0;
-
-        for (String str : cust) {
-            if (qCount == 5) {
-                break;
-            }
-            randomGameQuestions.put(str, customQuestions.get(str));
-            qCount++;
-        }
-    }
-    
-    public static void importContinueGameQuestions() { //imports the questions from the saved game and checks if the game is multiplayer or singleplayer
-        try {
-            FileReader fr = new FileReader("./resources/TriviaGameContinue.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
-            
-            line = inputStream.readLine();
-            if (line != null && line.startsWith("Multiplayer")) {
-                multiplayerSetUp();
-            } else if (line != null && line.startsWith("Single Player")) {
-                singlePlayerSetUp();
-            }
-            inputStream.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
-        }
-    }
-    
-    private static void singlePlayerSetUp() { //imports the questions from the saved game for singleplayer and writes them into the current game file questions
-        try {
-            FileReader fr = new FileReader("./resources/TriviaGameContinue.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
-            
-            inputStream.readLine();
-            line = inputStream.readLine();
-            
-            if (line != null && line.startsWith("Score:")) {
-                playerScore.newSingleScore();
-                playerScore.scores.set(0, Integer.parseInt(line.substring("Score: ".length())));
-            }
-
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
-                }
-
-                randomGameQuestions.put(question, options);
-            }
-
-            inputStream.close();
-            exportQuestions();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
-        }
-    }
-    
-    private static void multiplayerSetUp() { //imports the questions from the saved game for multiplayer and writes them into the current game file questions
-        try {
-            FileReader fr = new FileReader("./resources/TriviaGameContinue.txt");
-            BufferedReader inputStream = new BufferedReader(fr);
-            String line;
-            
-            inputStream.readLine();
-            
-            List<String> players = new ArrayList<>();
-            multiplayerGame game = multiplayerGame.getGameInstance();
-
-            while ((line = inputStream.readLine()) != null && line.startsWith("Score:")) {
-                String[] playerInfo = line.split("\\|");
-                String player = playerInfo[0].substring("Score:".length());
-                int score = Integer.parseInt(playerInfo[1]);
-                
-                players.add(player);
-                playerScore.scores.add(score);
-            }
-            
-            game.setPlayers(players);
-            
-            while ((line = inputStream.readLine()) != null) {
-                String[] questionAndAnswers = line.split("\\|");
-                String question = questionAndAnswers[0];
-                List<String> options = new ArrayList<>();
-                for (int i = 1; i < questionAndAnswers.length; i++) {
-                    options.add(questionAndAnswers[i]);
-                }
-
-                randomGameQuestions.put(question, options);
-            }
-
-            inputStream.close();
-            exportQuestions();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
-        } catch (IOException e) {
-            System.out.println("Error reading from file ");
-        }
-    }
-    
-    public static void clearFile(String filePath) { //clears the specified file
-        try {
-            FileWriter fw = new FileWriter(filePath, false);
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error clearing the file: " + e.getMessage());
-        }
-    }
-    
-    public static boolean fileStatus() { //checks if the previous game file is empty
-        File file = new File("./resources/TriviaGameContinue.txt");
-        
-        return file.exists() && file.length() == 0;
-    }
-    
-    public static void exportQuestions() { //writes the questions within randomGameQuestions to the current game file
-        try (
-                 FileWriter fw = new FileWriter("./resources/TriviaGameQandA.txt")) {
-            for (Map.Entry<String, List<String>> entry : randomGameQuestions.entrySet()) {
-                StringBuilder line = new StringBuilder(entry.getKey() + " | ");
-                List<String> answers = entry.getValue();
-                for (String ans : answers) {
-                    line.append(ans).append(" | ");
-                }
-                line.delete(line.length() - 3, line.length());
-                fw.write(line.toString() + "\n");
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error writing to file ");
-        }
-    }
-   
 }

@@ -40,30 +40,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
     public abstract void savePosition(List<Integer> scores);
 
     public abstract void askQuestions();
-
-    public boolean checkCustomQuestions() {
-
-        int customQs = 0;
-
-        try {
-            statement = conn.createStatement();
-            String getCustom = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'CUSTOM\'";
-
-            ResultSet resultSet = statement.executeQuery(getCustom);
-
-            while (resultSet.next()) {
-                customQs++;
-            }
-        } catch (SQLException ex) {
-            System.err.println("SQLException: " + ex.getMessage());
-        }
-
-        if (customQs >= 5) {
-            return true;
-        } else {
-            return false;
-        }
-    }
     
     public String getQuestion(int id) {
         String question = "";
@@ -165,10 +141,10 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
 
     public void randomGamesQuestions() { //gives random questions for random topics
         
-
         List<String> topics = new ArrayList<>(Arrays.asList("History", "Arts", "Science", "Sports", "Geography"));
+        customisations custom = new customisations();
 
-        if (checkCustomQuestions()) { //checks to see if there are enough custom questions for the game
+        if (custom.checkCustomQuestions()) { //checks to see if there are enough custom questions for the game
             topics.add("Custom");
         }
 
@@ -178,8 +154,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         for (int i = 0; i < 5; i++) {
             selectedTopics.add(topics.get(i));
         }
-        
-        
 
         try {
             statement = conn.createStatement();
@@ -209,142 +183,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
-
-        /*importQuestions iq = new importQuestions();
-        iq.importCustomQuestions();
-        int totalQuestions = 0;
-
-        List<String> topics = new ArrayList<>(Arrays.asList("history", "arts", "science", "sports", "geography"));
-
-        if (iq.customQuestions.size() >= 5) { //checks to see if there are enough custom questions for the game
-            topics.add("custom");
-        }
-
-        Collections.shuffle(topics); //randomises the topics
-        List<String> selectedTopics = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-            selectedTopics.add(topics.get(i));
-        }
-
-        for (String topic : selectedTopics) {
-            int questionAddedFromTopic = 0;
-
-            switch (topic) {
-                case "history":
-                    iq.importHistoryQuestions(); // imports the questions into the hashmap
-                    List<String> hist = new ArrayList<>(iq.historyQuestions.keySet());
-                    Collections.shuffle(hist); //randomises all the questions
-
-                    for (String str : hist) {
-                        if (totalQuestions >= 20 || questionAddedFromTopic >= 5) {
-                            break;
-                        }
-                        randomGameQuestions.put(str, iq.historyQuestions.get(str));
-                        totalQuestions++;
-                        questionAddedFromTopic++;
-                    }
-
-                    break;
-
-                case "arts":
-                    iq.importArtsQuestions();
-                    List<String> art = new ArrayList<>(iq.artsQuestions.keySet());
-                    Collections.shuffle(art);
-
-                    for (String str : art) {
-                        if (totalQuestions >= 20 || questionAddedFromTopic >= 5) {
-                            break;
-                        }
-                        randomGameQuestions.put(str, iq.artsQuestions.get(str));
-                        totalQuestions++;
-                        questionAddedFromTopic++;
-                    }
-
-                    break;
-
-                case "science":
-                    iq.importScienceQuestions();
-                    List<String> sci = new ArrayList<>(iq.scienceQuestions.keySet());
-                    Collections.shuffle(sci);
-
-                    for (String str : sci) {
-                        if (totalQuestions >= 20 || questionAddedFromTopic >= 5) {
-                            break;
-                        }
-                        randomGameQuestions.put(str, iq.scienceQuestions.get(str));
-                        totalQuestions++;
-                        questionAddedFromTopic++;
-                    }
-
-                    break;
-
-                case "sports":
-                    iq.importSportsQuestions();
-                    List<String> sprt = new ArrayList<>(iq.sportsQuestions.keySet());
-                    Collections.shuffle(sprt);
-
-                    for (String str : sprt) {
-                        if (totalQuestions >= 20 || questionAddedFromTopic >= 5) {
-                            break;
-                        }
-                        randomGameQuestions.put(str, iq.sportsQuestions.get(str));
-                        totalQuestions++;
-                        questionAddedFromTopic++;
-                    }
-                    break;
-
-                case "geography":
-                    iq.importGeographyQuestions();
-                    List<String> geo = new ArrayList<>(iq.geographyQuestions.keySet());
-                    Collections.shuffle(geo);
-
-                    for (String str : geo) {
-                        if (totalQuestions >= 20 || questionAddedFromTopic >= 5) {
-                            break;
-                        }
-                        randomGameQuestions.put(str, iq.geographyQuestions.get(str));
-                        totalQuestions++;
-                        questionAddedFromTopic++;
-                    }
-
-                    break;
-
-                case "custom":
-                    iq.importGeographyQuestions();
-                    List<String> cust = new ArrayList<>(iq.customQuestions.keySet());
-                    Collections.shuffle(cust);
-
-                    for (String str : cust) {
-                        if (totalQuestions >= 20 || questionAddedFromTopic >= 5) {
-                            break;
-                        }
-                        randomGameQuestions.put(str, iq.customQuestions.get(str));
-                        totalQuestions++;
-                        questionAddedFromTopic++;
-                    }
-
-                    break;
-
-            }
-        }
-
-        try ( // writes the random questions from the random topics to a file
-                 FileWriter fw = new FileWriter("./resources/TriviaGameQandA.txt")) {
-            for (Map.Entry<String, List<String>> entry : randomGameQuestions.entrySet()) {
-                StringBuilder line = new StringBuilder(entry.getKey() + " | ");
-                List<String> answers = entry.getValue();
-                for (String ans : answers) {
-                    line.append(ans).append(" | ");
-                }
-                line.delete(line.length() - 3, line.length());
-                fw.write(line.toString() + "\n");
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error writing to file ");
-        }
-         */
     }
 
     public static void gameFinished(List<Integer> scores) { //gives the player/s their score/s at the end of the game and gives them options for what they wish to do next

@@ -16,6 +16,7 @@ public class playerScore {
     
     public static void newSingleScore() { //creates a new score in the scores array
         scores.add(0);
+        scores.set(0, 0);
     }
     
     public static void newMultiScore(int size) { //creates multiple new scores in the scores array
