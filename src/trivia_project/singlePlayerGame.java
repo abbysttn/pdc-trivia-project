@@ -4,43 +4,82 @@
  */
 package trivia_project;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Collections;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 /**
  *
  * @author abbys
  */
 public class singlePlayerGame extends Game { //subclass of Game
-    
+
+    private Statement statement;
+    private final DBManager dbManager;
+    private final Connection conn;
+
+    public singlePlayerGame() {
+        dbManager = new DBManager();
+        conn = dbManager.getConnection();
+    }
+
     @Override
-    public void savePosition(List<Integer> scores) { // saves the games curent position as well as the score for future pickup
-        try (
-                 FileWriter fw = new FileWriter("./resources/TriviaGameContinue.txt")) {
+    public void savePosition(List<Integer> scores, int currentQuestionIndex) { // saves the games curent position as well as the score for future pickup
+        try {
+            statement = conn.createStatement();
 
-            fw.write("Single Player\n");
-            fw.write("Score: " + scores.get(0) + "\n");
+            clearTable();
 
-            for (String askedQuestions : askedQs.keySet()) {
-                randomGameQuestions.remove(askedQuestions);
-            }
+            String getQs = "SELECT * FROM CURRENTGAMEQS";
 
-            for (Map.Entry<String, List<String>> entry : randomGameQuestions.entrySet()) {
-                StringBuilder line = new StringBuilder(entry.getKey() + " | ");
-                List<String> answers = entry.getValue();
-                for (String ans : answers) {
-                    line.append(ans).append(" | ");
+            int count = 1;
+
+            ResultSet resultSet = statement.executeQuery(getQs);
+
+            while (resultSet.next()) {
+                if (count < currentQuestionIndex) {
+                    System.out.println(count);
+                    count++;
+                } else {
+                    int id = resultSet.getInt("QUESTIONID");
+                    insertQs(id);
+                    count++;
                 }
-                line.delete(line.length() - 3, line.length());
-                fw.write(line.toString() + "\n");
             }
 
-        } catch (IOException e) {
-            System.out.println("Error writing to file ");
+            String insertQ = "INSERT INTO SAVEDGAMEPLAYER (playerName, score) VALUES (\'single Player\', " + scores.get(0) + ")";
+            statement.executeUpdate(insertQ);
+
+            statement.close();
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
+
+    private void insertQs(int id) {
+        try {
+            statement = conn.createStatement();
+
+            String insertQ = "INSERT INTO SAVEDGAMEQS (questionID) VALUES (" + id + ")";
+            statement.executeUpdate(insertQ);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
+
+    private void clearTable() {
+        try {
+            statement = conn.createStatement();
+
+            String clearTable = "DELETE FROM SAVEDGAMEQS";
+            statement.executeUpdate(clearTable);
+
+            String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";
+            statement.executeUpdate(clearPlayers);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 }

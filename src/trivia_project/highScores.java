@@ -5,7 +5,6 @@
 package trivia_project;
 
 import java.util.*;
-import java.io.*;
 import java.sql.*;
 
 /**

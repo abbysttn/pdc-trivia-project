@@ -6,6 +6,7 @@ package trivia_project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -15,9 +16,13 @@ public class TriviaModel {
 
     private String customQuestion;
     private int wrongAnsrNum = 3;
+    
+    private int playerIndex = 0;
 
     private List<Integer> questionIds;
     private List<String> answers;
+    
+    private List<String> playersOnStreak = new ArrayList<>();
 
     private int currentQuestionIndex = 0;
     private int streak = 0;
@@ -28,6 +33,39 @@ public class TriviaModel {
     
     private List<String> playerNames = new ArrayList<>();
     private int playerAmount = 0;
+    
+    private int specialQuestionNum = 0;
+    
+    private final Random rand = new Random();
+    private final int randomNumber = rand.nextInt(10) + 5;
+    
+    public int getRandomNumber() {
+        return randomNumber;
+    }
+    
+    public int getSpecialQuestionNum() {
+        return specialQuestionNum;
+    }
+    
+    public void increaseSpecialQuestionNum(int specialQuestionNum) {
+        this.specialQuestionNum = specialQuestionNum + 1;
+    }
+    
+    public List<String> getPlayersOnStreak() {
+        return playersOnStreak;
+    }
+    
+    public void setPlayersOnStreak(List<String> playersOnStreak) {
+        this.playersOnStreak = playersOnStreak;
+    }
+    
+    public int getPlayerIndex() {
+        return playerIndex;
+    }
+    
+    public void setPlayerIndex(int playerIndex) {
+        this.playerIndex = playerIndex;
+    }
     
     public void addStreaks() {
         for(int i = 0; i < playerAmount; i++) {

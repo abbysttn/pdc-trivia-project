@@ -32,7 +32,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
     static HashMap<String, List<String>> randomGameQuestions = new HashMap<>();
     static HashMap<String, List<String>> askedQs = new HashMap<>();
 
-    public abstract void savePosition(List<Integer> scores);
+    public abstract void savePosition(List<Integer> scores, int currentQuestionIndex);
     
     public String getQuestion(int id) {
         String question = "";

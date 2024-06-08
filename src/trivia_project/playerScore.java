@@ -15,8 +15,8 @@ public class playerScore {
     static List<Integer> scores = new ArrayList<>();
     
     public static void newSingleScore() { //creates a new score in the scores array
+        scores.clear();
         scores.add(0);
-        scores.set(0, 0);
     }
     
     public static void newMultiScore(int size) { //creates multiple new scores in the scores array
@@ -37,15 +37,15 @@ public class playerScore {
         scores.set(0, scores.get(0) + 100);
     }
     
-    public static void addToMultiScore(int index, String player) { // adds 10 points to the current players score
+    public static void addToMultiScore(int index) { // adds 10 points to the current players score
         scores.set(index, scores.get(index) + 10);
     }
     
-    public static void addToMultiScoreStreak(int index, String player) { //adds 30 points to the current players score after a streak of 3 has been achieved
+    public static void addToMultiScoreStreak(int index) { //adds 30 points to the current players score after a streak of 3 has been achieved
         scores.set(index, scores.get(index) + 30);
     }
     
-    public static void addToMultiScoreSpecial(int index, String player) { //adds 100 points to the current players score after getting the written question correct
+    public static void addToMultiScoreSpecial(int index) { //adds 100 points to the current players score after getting the written question correct
         scores.set(index, scores.get(index) + 100);
     }
     
@@ -58,7 +58,7 @@ public class playerScore {
         }
     }
     
-    public static void minusScoreMulti(int index, String player) { //removes 10 points from the current players score
+    public static void minusScoreMulti(int index) { //removes 10 points from the current players score
         
         if (scores.get(index) != 0) {
         scores.set(index, scores.get(index) - 10);
