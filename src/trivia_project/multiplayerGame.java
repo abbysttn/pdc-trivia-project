@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Scanner;
 import static trivia_project.Game.askedQs;
 import static trivia_project.Game.randomGameQuestions;
 
@@ -50,63 +49,6 @@ public class multiplayerGame extends Game { //subclass of Game
         return multiPlayers.get(currentPlayerIndex);
     }
     
-    public static void startMultiPlayerGame() { //starts a randomised multiplayer game
-        multiplayerGame game = getGameInstance();
-        
-        System.out.println("            A new Trivia Game is starting...\n");
-        System.out.println("To answer a question type in the letter of the answer (a/b/c/d). Press 'x' at any time to leave the game.\n\n");
-        
-        game.setPlayers(game.players());
-        
-        playerScore.newMultiScore(game.getPlayers().size());
-        
-        game.randomGamesQuestions();
-        game.askQuestions();
-    }
-    
-    public static void startCustomMultiPlayerGame() { //starts a custom multiplayer game
-        multiplayerGame game = getGameInstance();
-        
-        System.out.println("            A new Trivia Game is starting...\n");
-        System.out.println("To answer a question type in the letter of the answer (a/b/c/d). Press 'x' at any time to leave the game.\n\n");
-        
-        game.setPlayers(game.players());
-        
-        playerScore.newMultiScore(game.getPlayers().size());
-        
-        game.askQuestions();
-    }
-    
-    private List<String> players() { //returns the list of user inputted players
-        Scanner scan = new Scanner(System.in);
-        List<String> players = new ArrayList<>();
-        System.out.println("Please enter the name of the first player:");
-        String user1 = scan.nextLine();
-        players.add(user1);
-        
-        System.out.println("Please enter the name of the second player:");
-        String user2 = scan.nextLine();
-        players.add(user2);
-        
-        System.out.println("Please enter the name of the third player or press e to start the game:");
-        String user3 = scan.nextLine();
-        
-        if (user3.equalsIgnoreCase("e")) {
-            return players;
-        } else {
-            players.add(user3);
-            System.out.println("Please enter the name of the fourth player or press e to start the game:");
-            String user4 = scan.nextLine();
-            if (user4.equalsIgnoreCase("e")) {
-                return players;
-                
-            } else {
-                players.add(user4);
-                return players;
-                
-            }
-        }
-    }
     
     @Override
     public void savePosition(List<Integer> scores) { //saves the position of the game, scores, and players for future pickup
@@ -198,10 +140,10 @@ public class multiplayerGame extends Game { //subclass of Game
             int score = playerScore.scores.get(i);
             System.out.println(playerName + "'s final score is: " + score);
         }
-        gameFinished(playerScore.scores);
+        //gameFinished(playerScore.scores);
     }
     
-    @Override
+    /*@Override
     public boolean checkAnswer(String correctAnswer) { //checks if the answer inputted is correct
         Scanner scan = new Scanner(System.in);
         
@@ -241,7 +183,7 @@ public class multiplayerGame extends Game { //subclass of Game
         }
         return false;
     }
-    
+    */
     
     
 }

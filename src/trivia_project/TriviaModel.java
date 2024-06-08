@@ -21,9 +21,43 @@ public class TriviaModel {
 
     private int currentQuestionIndex = 0;
     private int streak = 0;
+    private List<Integer> streaks = new ArrayList<>();
 
     private int customCats = 1;
     private List<String> selectedTopics = new ArrayList<>();
+    
+    private List<String> playerNames = new ArrayList<>();
+    private int playerAmount = 0;
+    
+    public void addStreaks() {
+        for(int i = 0; i < playerAmount; i++) {
+            streaks.add(0);
+        }
+    }
+    
+    public List<Integer> getStreaks() {
+        return streaks;
+    }
+    
+    public void setStreaks(List<Integer> streaks) {
+        this.streaks = streaks;
+    }
+    
+    public int getPlayerAmount() {
+        return playerAmount;
+    }
+    
+    public void setPlayerAmount(int playerAmount) {
+        this.playerAmount = playerAmount;
+    }
+    
+    public List<String> getPlayerNames() {
+        return playerNames;
+    }
+    
+    public void setPlayerNames(List<String> playerNames) {
+        this.playerNames = playerNames;
+    }
 
     public String getCustomQuestion() {
         return customQuestion;

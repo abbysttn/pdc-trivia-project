@@ -4,8 +4,6 @@
  */
 package trivia_project;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +13,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import static trivia_project.highScores.topHighScores;
 
 /**
  *
@@ -38,8 +33,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
     static HashMap<String, List<String>> askedQs = new HashMap<>();
 
     public abstract void savePosition(List<Integer> scores);
-
-    public abstract void askQuestions();
     
     public String getQuestion(int id) {
         String question = "";
@@ -184,74 +177,4 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
             System.err.println("SQLException: " + ex.getMessage());
         }
     }
-
-    public static void gameFinished(List<Integer> scores) { //gives the player/s their score/s at the end of the game and gives them options for what they wish to do next
-
-        int highScore = 0;
-
-        for (int score : scores) { //checks to see who has the highest score (if multiplayer)
-
-            if (score > highScore) {
-                highScore = score;
-            }
-        }
-        Scanner scan = new Scanner(System.in);
-
-        resetTriviaGame.clearAll(); //clears all questions from the hashmaps to ensure all answers remain accurate the next round
-
-        boolean run = true;
-
-        while (run) {
-            System.out.println("\n      Please select one of the following letters for the option.");
-            System.out.println("New Game (n)          Main Page (m)");
-            String option = scan.nextLine();
-
-            switch (option) {
-                case "n":
-                case "N":
-                    boolean choosing = true;
-
-                    while (choosing) {
-                        System.out.println("What kind of game would you like to start:");
-                        System.out.println("New Single Player game (s)              New Multiplayer Game (m)");
-                        String choice = scan.nextLine();
-
-                        switch (choice) {
-                            case "s":
-                            case "S":
-                                playerScore.newSingleScore(); //adds a new score to the score array
-                                System.out.println("        Setting up new Trivia game...\n");
-                                //customisations.gameCustomisationsSingle(); //asks users what type of game they want to play
-                                break;
-
-                            case "m":
-                            case "M":
-                                System.out.println("        Setting up new Trivia game...\n");
-                                multiplayerGame.startMultiPlayerGame();
-                                break;
-
-                            case "x":
-                            case "X":
-                                runGame.quitProgram(); //checks with user if they want to leave the program
-                                break;
-                        }
-                    }
-                    break;
-
-                case "m":
-                case "M":
-                    //mainPage.runMainPage(); //runs the main page
-                    break;
-
-                case "x":
-                case "X":
-                    runGame.quitProgram();//checks with user if they want to leave the program
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
-
 }
