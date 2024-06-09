@@ -9,7 +9,6 @@ package trivia_project;
  *
  * @author abbys
  */
-import java.util.Scanner;
 
 public class runGame {
 

@@ -79,4 +79,12 @@ public class highScores {
         
         return -1;
     }
+    
+    public static boolean checkNameLength(String name) {
+        if (name.length() >= 99 || name.length() <= 1) {
+            return false;
+        }
+        
+        return true;
+    }
 }

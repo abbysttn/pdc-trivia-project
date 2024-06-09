@@ -67,7 +67,7 @@ public class resetTriviaGame {
         return ids;
     }
 
-    private void clearSavedGameQs() {
+    public void clearSavedGameQs() {
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM SAVEDGAMEQS";
@@ -100,7 +100,7 @@ public class resetTriviaGame {
         }
     }
 
-    private void clearSavedPlayers() {
+    public void clearSavedPlayers() {
         try {
             statement = conn.createStatement();
             String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";

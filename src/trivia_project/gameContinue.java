@@ -53,12 +53,12 @@ public class gameContinue {
 
             resetTriviaGame rtg = new resetTriviaGame();
             rtg.clearCurrentGameQs();
+            
 
             String getQs = "SELECT * FROM SAVEDGAMEQS";
 
             ResultSet resultSet = statement.executeQuery(getQs);
 
-            System.out.println("sleected");
 
             List<Integer> questionIDs = new ArrayList<>();
 
@@ -70,15 +70,12 @@ public class gameContinue {
             for (int id : questionIDs) {
                 String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + id + ")";
                 statement.executeUpdate(importQs);
-                System.out.println("added");
             }
 
-            System.out.println("end add");
             String getPlayers = "SELECT * FROM SAVEDGAMEPLAYER";
 
             ResultSet rs = statement.executeQuery(getPlayers);
 
-            System.out.println("select players");
 
             List<String> players = new ArrayList<>();
             List<Integer> scores = new ArrayList<>();
@@ -89,16 +86,16 @@ public class gameContinue {
 
                 players.add(player);
                 scores.add(score);
-                System.out.println("sdd stuff");
             }
-
-            System.out.println("end add stuff");
 
             if (players.size() >= 2) {
                 importMultiGame(players, scores);
             } else {
                 importSingleGame(scores.get(0));
             }
+            
+            rtg.clearSavedGameQs();
+            rtg.clearSavedPlayers();
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
@@ -113,6 +110,7 @@ public class gameContinue {
     private void importMultiGame(List<String> players, List<Integer> scores) {
         TriviaModel model = TriviaModel.getModelInstance();
         model.setPlayerNames(players);
+        model.setPlayerAmount(scores.size());
         playerScore.newMultiScore(scores.size());
 
         int index = 0;

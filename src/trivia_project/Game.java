@@ -241,4 +241,20 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         
         return isCorrect;
     }
+    
+    public static boolean checkQuestionLength(String question) {
+        if (question.length() >= 254 || question.length() <= 19) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public static boolean checkAnswerLength(String answer) {
+        if (answer.length() >= 254 || answer.length() <= 19) {
+            return false;
+        }
+        
+        return true;
+    }
 }

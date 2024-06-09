@@ -166,7 +166,7 @@ public class TriviaController {
         public void actionPerformed(ActionEvent evt) {
             gameContinue gc = new gameContinue();
             String gameType = gc.getGameType();
-            
+
             JOptionPane.showMessageDialog(view, "You have a " + gameType + " game saved.", "Info", JOptionPane.INFORMATION_MESSAGE);
             int response = JOptionPane.showConfirmDialog(view, "Would you like to continue this game?", "Confirm", JOptionPane.YES_NO_OPTION);
             if (response == JOptionPane.YES_OPTION) {
@@ -190,25 +190,31 @@ public class TriviaController {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 String answer = view.getSpecialAnswerField().getText();
 
-                if (game.checkSpecialAnswer(view.getSpecialQ().getText(), answer)) {
-                    if (!model.getPlayerNames().isEmpty()) {
-                        playerScore.addToMultiScoreSpecial(model.getPlayerIndex());
-                        showScoresMulti();
-                        view.switchToMultiGame();
+                if (Game.checkAnswerLength(answer)) {
+                    if (game.checkSpecialAnswer(view.getSpecialQ().getText(), answer)) {
+                        if (!model.getPlayerNames().isEmpty()) {
+                            playerScore.addToMultiScoreSpecial(model.getPlayerIndex());
+                            showScoresMulti();
+                            view.switchToMultiGame();
+                        } else {
+                            playerScore.addToScoreSingleSpecial();
+                            view.getScore().setText("Score: " + playerScore.scores.get(0));
+                            view.switchToSingleGame();
+                        }
+                        model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
                     } else {
-                        playerScore.addToScoreSingleSpecial();
-                        view.getScore().setText("Score: " + playerScore.scores.get(0));
-                        view.switchToSingleGame();
+                        if (!model.getPlayerNames().isEmpty()) {
+                            view.switchToMultiGame();
+                        } else {
+                            view.switchToSingleGame();
+                        }
+                        model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
                     }
-                    model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
                 } else {
-                    if (!model.getPlayerNames().isEmpty()) {
-                        view.switchToMultiGame();
-                    } else {
-                        view.switchToSingleGame();
-                    }
-                    model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
+                    JOptionPane.showMessageDialog(view, "Please enter an answer between 3 and 250 characters.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+
+                view.getSpecialAnswerField().setText("Answer here and press enter!");
             }
         }
 
@@ -279,18 +285,23 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                model.setPlayerAmount(model.getPlayerAmount() + 1);
 
-                if (model.getPlayerAmount() == 2) {
-                    model.getPlayerNames().add(view.getPlayerNameField().getText());
-                    view.addMultiNameOk();
-                } else if (model.getPlayerAmount() <= 3) {
-                    model.getPlayerNames().add(view.getPlayerNameField().getText());
+                if (highScores.checkNameLength(view.getPlayerNameField().getText())) {
+                    model.setPlayerAmount(model.getPlayerAmount() + 1);
+
+                    if (model.getPlayerAmount() == 2) {
+                        model.getPlayerNames().add(view.getPlayerNameField().getText());
+                        view.addMultiNameOk();
+                    } else if (model.getPlayerAmount() <= 3) {
+                        model.getPlayerNames().add(view.getPlayerNameField().getText());
+                    } else {
+                        model.getPlayerNames().add(view.getPlayerNameField().getText());
+                        multiplayerGame game = multiplayerGame.getGameInstance();
+                        game.setPlayers(model.getPlayerNames());
+                        view.switchToMultiOptions();
+                    }
                 } else {
-                    model.getPlayerNames().add(view.getPlayerNameField().getText());
-                    multiplayerGame game = multiplayerGame.getGameInstance();
-                    game.setPlayers(model.getPlayerNames());
-                    view.switchToMultiOptions();
+                    JOptionPane.showMessageDialog(view, "Please enter a name between 2 and 50 characters.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
                 view.getPlayerNameField().setText("Enter the player name here!");
@@ -392,6 +403,7 @@ public class TriviaController {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                 view.switchToHowToInstruct3();
+                view.getHowToSpecial().setText("Answer here and press enter!");
             }
         }
 
@@ -409,9 +421,14 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                findHighScores(view.getFindHS().getText());
+
+                if (highScores.checkNameLength(view.getFindHS().getText())) {
+                    findHighScores(view.getFindHS().getText());
+                    view.switchToSearchHS();
+                } else {
+                    JOptionPane.showMessageDialog(view, "Please enter a name between 2 and 50 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 view.getFindHS().setText("Search for another score?");
-                view.switchToSearchHS();
             }
         }
 
@@ -429,9 +446,13 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                findHighScores(view.getFindHS().getText());
+                if (highScores.checkNameLength(view.getFindHS().getText())) {
+                    findHighScores(view.getFindHS().getText());
+                    view.switchToSearchHS();
+                } else {
+                    JOptionPane.showMessageDialog(view, "Please enter a name between 2 and 50 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 view.getFindHS().setText("Search for another score?");
-                view.switchToSearchHS();
             }
         }
 
@@ -449,9 +470,15 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                view.getInputtedQ().setText(view.getQuestionField().getText());
-                model.setCustomQuestion(view.getQuestionField().getText());
-                view.switchToQuestionsCheck();
+
+                if (Game.checkQuestionLength(view.getQuestionField().getText())) {
+                    view.getInputtedQ().setText(view.getQuestionField().getText());
+                    model.setCustomQuestion(view.getQuestionField().getText());
+                    view.switchToQuestionsCheck();
+                } else {
+                    JOptionPane.showMessageDialog(view, "Please enter a question between 20 and 250 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                view.getQuestionField().setText("Enter the Question here!");
             }
         }
 
@@ -469,9 +496,15 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                view.getInputtedA().setText(view.getAnswerField().getText());
-                view.switchToAnswerCheck();
-                model.setWrongAnsrNum(3);
+
+                if (Game.checkAnswerLength(view.getAnswerField().getText())) {
+                    view.getInputtedA().setText(view.getAnswerField().getText());
+                    view.switchToAnswerCheck();
+                    model.setWrongAnsrNum(3);
+                } else {
+                    JOptionPane.showMessageDialog(view, "Please enter an answer between 3 and 250 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                view.getAnswerField().setText("Enter the correct answer here!");
             }
         }
 
@@ -489,20 +522,23 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                model.setWrongAnsrNum(model.getWrongAnsrNum() - 1);
+                if (Game.checkAnswerLength(view.getWrongAnswerField().getText())) {
+                    model.setWrongAnsrNum(model.getWrongAnsrNum() - 1);
 
-                if (model.getWrongAnsrNum() >= 1) {
-                    customisations custom = new customisations();
-                    custom.addAnswerToCustom(model.getCustomQuestion(), view.getWrongAnswerField().getText(), false);
+                    if (model.getWrongAnsrNum() >= 1) {
+                        customisations custom = new customisations();
+                        custom.addAnswerToCustom(model.getCustomQuestion(), view.getWrongAnswerField().getText(), false);
+                    } else {
+                        customisations custom = new customisations();
+                        custom.addAnswerToCustom(model.getCustomQuestion(), view.getWrongAnswerField().getText(), false);
+                        view.switchToFullyAddedQandA();
+                    }
                 } else {
-                    customisations custom = new customisations();
-                    custom.addAnswerToCustom(model.getCustomQuestion(), view.getWrongAnswerField().getText(), false);
-                    view.switchToFullyAddedQandA();
+                    JOptionPane.showMessageDialog(view, "Please enter an answer between 3 and 250 characters.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
                 view.getWrongAnswerField().setText("Enter the wrong answer here!");
                 view.getWrongAs().setText("Enter " + model.getWrongAnsrNum() + " wrong answers for your question.");
-
             }
         }
 
@@ -833,7 +869,18 @@ public class TriviaController {
 
         if (model.getQuestionIds().size() != model.getCurrentQuestionIndex()) {
             model.setAnswers(game.getAnswers(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
-            view.getSingleQuestion().setText(game.getQuestion(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
+
+            String question = game.getQuestion(model.getQuestionIds().get(model.getCurrentQuestionIndex()));
+
+            if (question.length() >= 70) {
+                List<String> questionParts = splitQuestion(question);
+                view.getSingleQuestion().setText(questionParts.get(0));
+                view.getSingleQuestion1().setText(questionParts.get(1));
+                view.showSecondQuestionPartS();
+            } else {
+                view.hideSecondQuestionPartS();
+                view.getSingleQuestion().setText(game.getQuestion(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
+            }
             view.getCategoryName().setText("The category is: " + game.getCategory(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
 
             view.getAns5().setText(model.getAnswers().get(0));
@@ -847,8 +894,13 @@ public class TriviaController {
             view.switchToEndSingleGame();
             view.getFinalScoreSingle().setText("Your final score is: " + playerScore.scores.get(0));
             String name = JOptionPane.showInputDialog(view, "What name would you like to use for your highscore?", null);
-            highScores hs = new highScores();
-            hs.newHighScore(name, playerScore.scores.get(0));
+            if (highScores.checkNameLength(view.getFindHS().getText())) {
+                highScores hs = new highScores();
+                hs.newHighScore(name, playerScore.scores.get(0));
+            } else {
+                JOptionPane.showMessageDialog(view, "Please enter a name between 2 and 50 characters.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }
 
@@ -917,7 +969,7 @@ public class TriviaController {
         playerScore.newSingleScore();
         newQuestion();
     }
-    
+
     private void startSavedSingle() {
         singlePlayerGame game = new singlePlayerGame();
         view.switchToSingleGame();
@@ -942,7 +994,7 @@ public class TriviaController {
         showScoresMulti();
         newQuestionMulti();
     }
-    
+
     private void startSavedMulti() {
         multiplayerGame game = multiplayerGame.getGameInstance();
         view.switchToMultiGame();
@@ -1038,7 +1090,8 @@ public class TriviaController {
                 highScores hs = new highScores();
                 hs.newHighScore(playerNames.get(playerAndScore.get(0)), playerAndScore.get(1));
             }
-
+            model.setPlayerAmount(0);
+            model.getPlayerNames().removeAll(playerNames);
         }
     }
 

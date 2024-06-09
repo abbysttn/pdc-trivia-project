@@ -33,6 +33,10 @@ public class TriviaView extends javax.swing.JFrame {
     public JPanel getMainPage() {
         return mainPage;
     }
+    
+    public JPanel getMainPanel() {
+        return main;
+    }
 
     public JPanel getStartPage() {
         return startPage;
@@ -1083,12 +1087,12 @@ public class TriviaView extends javax.swing.JFrame {
             .addGroup(howToInstruct1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(howToInstruct1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(normalQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(normalQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, howToInstruct1Layout.createSequentialGroup()
                         .addComponent(toMainHowTo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(howTo3)
-                        .addGap(162, 162, 162)
+                        .addGap(157, 157, 157)
                         .addComponent(exit2)))
                 .addContainerGap())
         );
@@ -1192,7 +1196,7 @@ public class TriviaView extends javax.swing.JFrame {
                     .addComponent(normalQuestion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(question1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(question2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(normalQuestion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(normalQuestion3, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, howToInstruct2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1207,9 +1211,9 @@ public class TriviaView extends javax.swing.JFrame {
                     .addGroup(howToInstruct2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(toMainHowTo1)
-                        .addGap(153, 153, 153)
-                        .addComponent(howTo1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(howTo1)
+                        .addGap(157, 157, 157)
                         .addComponent(exit1)))
                 .addContainerGap())
         );
@@ -1280,13 +1284,13 @@ public class TriviaView extends javax.swing.JFrame {
                 .addGroup(howToInstruct3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(howToInstruct3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(normalQuestion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(normalQuestion4, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
                     .addGroup(howToInstruct3Layout.createSequentialGroup()
                         .addGap(269, 269, 269)
                         .addComponent(goodLuckToMain, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(howToInstruct3Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
+                        .addGap(152, 152, 152)
                         .addComponent(howTo2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exit3)))
@@ -1304,7 +1308,7 @@ public class TriviaView extends javax.swing.JFrame {
                 .addComponent(normalQuestion4)
                 .addGap(33, 33, 33)
                 .addComponent(goodLuckToMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 123, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         howToPlay.add(howToInstruct3, "card4");
@@ -1393,17 +1397,17 @@ public class TriviaView extends javax.swing.JFrame {
                             .addComponent(HS4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(HS5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(highscoresLayout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(findHS, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(highscoresLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(toMainHS1)
-                        .addGap(125, 125, 125)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                         .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(129, 129, 129)
                         .addComponent(exit4)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, highscoresLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(findHS, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253))
         );
         highscoresLayout.setVerticalGroup(
             highscoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1427,9 +1431,9 @@ public class TriviaView extends javax.swing.JFrame {
                 .addComponent(HS4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HS5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(findHS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(29, 29, 29))
         );
 
         main.add(highscores, "card5");
@@ -1488,17 +1492,17 @@ public class TriviaView extends javax.swing.JFrame {
                             .addComponent(foundHS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(searchedHS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(searchHSLayout.createSequentialGroup()
-                        .addGap(249, 249, 249)
-                        .addComponent(findHS1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(searchHSLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(toMainHS2)
-                        .addGap(137, 137, 137)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                         .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(141, 141, 141)
                         .addComponent(exit5)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchHSLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(findHS1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250))
         );
         searchHSLayout.setVerticalGroup(
             searchHSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1579,35 +1583,39 @@ public class TriviaView extends javax.swing.JFrame {
                     .addComponent(customNote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(questionsAddLayout.createSequentialGroup()
                         .addComponent(toMainC)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(questionsAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(title3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(questionsAddLayout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 121, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionsAddLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(exit7)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionsAddLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(237, 237, 237))
+                .addGap(236, 236, 236))
         );
         questionsAddLayout.setVerticalGroup(
             questionsAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(questionsAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(questionsAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(questionsAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(questionsAddLayout.createSequentialGroup()
+                        .addComponent(toMainC)
+                        .addGap(76, 76, 76))
                     .addGroup(questionsAddLayout.createSequentialGroup()
                         .addComponent(exit7)
-                        .addGap(1, 1, 1)
-                        .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(toMainC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(CustomQs)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(customNote)
-                .addGap(48, 48, 48)
+                .addGap(64, 64, 64)
                 .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         customisationsQs.add(questionsAdd, "card2");
@@ -1690,10 +1698,12 @@ public class TriviaView extends javax.swing.JFrame {
                         .addComponent(toMainC1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(questionsCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(title4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionsCheckLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(exit6)))))
+                            .addGroup(questionsCheckLayout.createSequentialGroup()
+                                .addGap(0, 579, Short.MAX_VALUE)
+                                .addComponent(exit6))
+                            .addGroup(questionsCheckLayout.createSequentialGroup()
+                                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         questionsCheckLayout.setVerticalGroup(
@@ -1701,16 +1711,15 @@ public class TriviaView extends javax.swing.JFrame {
             .addGroup(questionsCheckLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(questionsCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(questionsCheckLayout.createSequentialGroup()
-                        .addComponent(exit6)
-                        .addGap(1, 1, 1)
-                        .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(exit6)
                     .addComponent(toMainC1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(inputQ)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(inputtedQ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(continueQ)
                 .addGap(18, 18, 18)
                 .addGroup(questionsCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3296,7 +3305,6 @@ public class TriviaView extends javax.swing.JFrame {
     }
 
     public void switchToHighscores() {
-        //updateHighScores();
         main.removeAll();
         main.add(highscores);
         main.repaint();
@@ -3325,7 +3333,6 @@ public class TriviaView extends javax.swing.JFrame {
 
     public void switchToQuestionsCheck() {
         inputtedQ.setText(questionField.getText());
-        //set custom questions to this field.
         customisationsQs.remove(questionsAdd);
         customisationsQs.repaint();
         customisationsQs.revalidate();
@@ -3378,11 +3385,6 @@ public class TriviaView extends javax.swing.JFrame {
     }
 
     public void switchToAnswerWrong() {
-
-        //add custom questions and answer to database
-        /*customisations custom = new customisations();
-        custom.addQtoCustom(customQuestion);
-        custom.addAnswerToCustom(customQuestion, answerField.getText(), true);*/
         answerField.setText("Enter the answer here!");
 
         customisationsQs.remove(answerCheck);
