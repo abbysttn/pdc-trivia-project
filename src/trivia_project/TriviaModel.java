@@ -62,6 +62,10 @@ public class TriviaModel {
         return specialQuestionNum;
     }
     
+    public void setSpecialQuestionNum(int specialQuestionNum) {
+        this.specialQuestionNum = specialQuestionNum;
+    }
+    
     public void increaseSpecialQuestionNum(int specialQuestionNum) {
         this.specialQuestionNum = specialQuestionNum + 1;
     }

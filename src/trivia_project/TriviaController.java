@@ -392,6 +392,7 @@ public class TriviaController {
         @Override
         public void actionPerformed(ActionEvent evt) {
             view.switchToNewGameOptions();
+            model.setSpecialQuestionNum(0);
         }
     }
 
@@ -951,7 +952,6 @@ public class TriviaController {
 
     private void checkAnswerMulti(int index, int playerIndex) {
         multiplayerGame game = multiplayerGame.getGameInstance();
-        System.out.println(model.getPlayerIndex());
 
         if (game.checkAnswer(model.getAnswers().get(index))) {
             if (model.getStreaks().get(playerIndex) == 3) {
