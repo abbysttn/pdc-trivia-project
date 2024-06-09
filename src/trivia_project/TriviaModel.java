@@ -5,7 +5,9 @@
 package trivia_project;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -22,7 +24,7 @@ public class TriviaModel {
     private List<Integer> questionIds;
     private List<String> answers;
     
-    private List<String> playersOnStreak = new ArrayList<>();
+    private Map<String, Integer> playersOnStreak = new HashMap<>();
 
     private int currentQuestionIndex = 0;
     private int streak = 0;
@@ -64,11 +66,16 @@ public class TriviaModel {
         this.specialQuestionNum = specialQuestionNum + 1;
     }
     
-    public List<String> getPlayersOnStreak() {
+    public Map<String, Integer> getPlayersOnStreak() {
         return playersOnStreak;
     }
     
-    public void setPlayersOnStreak(List<String> playersOnStreak) {
+    public void setPlayersOnStreak(Map<String, Integer> playersOnStreak) {
+        this.playersOnStreak = playersOnStreak;
+    }
+    
+    public void removePlayerOnStreak(Map<String, Integer> playersOnStreak, int index, String player) {
+        playersOnStreak.remove(player, index);
         this.playersOnStreak = playersOnStreak;
     }
     

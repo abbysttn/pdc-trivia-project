@@ -30,9 +30,9 @@ public class resetTriviaGame {
         clearSavedGameQs();
         clearSavedPlayers();
         clearCustomAs();
-        clearCustomQs();
         clearHighscores();
         clearCurrentGameQs();
+        clearCustomQs();
     }
 
     private void clearCustomQs() { //clears the custom questions from the questions table
@@ -42,6 +42,7 @@ public class resetTriviaGame {
 
             statement.executeUpdate(deleteQs);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -59,6 +60,8 @@ public class resetTriviaGame {
                 int id = rs.getInt("ID");
                 ids.add(id);
             }
+            
+            statement.close();
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
@@ -73,6 +76,7 @@ public class resetTriviaGame {
             String clearTable = "DELETE FROM SAVEDGAMEQS";
             statement.executeUpdate(clearTable);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -84,17 +88,20 @@ public class resetTriviaGame {
             String clearTable = "DELETE FROM CURRENTGAMEQS";
             statement.executeUpdate(clearTable);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
     }
     
     private void clearHighscores() { //clears all highscores
+        highScores.topHighScores.clear();
         try {
             statement = conn.createStatement();
             String clearHS = "DELETE FROM HIGH_SCORES";
             statement.executeUpdate(clearHS);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -106,13 +113,14 @@ public class resetTriviaGame {
             String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";
             statement.executeUpdate(clearPlayers);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
     }
 
     private void clearCustomAs() { //clears the custom answers
-        List<Integer> ids = getCustomQsId();
+        List<Integer> ids = getCustomQsId();       
 
         try {
             statement = conn.createStatement();
@@ -122,6 +130,7 @@ public class resetTriviaGame {
                 statement.executeUpdate(deleteA);
             }
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }

@@ -5,9 +5,7 @@
 package trivia_project;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.sql.Connection;
@@ -57,9 +55,11 @@ public class TriviaControllerTest {
             assertEquals(playerName, resultSet.getString("name"));
             assertEquals(score, resultSet.getInt("score"));
             assertFalse(resultSet.next());
+            clearHighScoresTable();
         } catch (SQLException e) {
             fail("SQLException: " + e.getMessage());
         }
+        
     }
 
     @Test
@@ -78,6 +78,7 @@ public class TriviaControllerTest {
             assertEquals(playerName, resultSet.getString("name"));
             assertEquals(score, resultSet.getInt("score"));
             assertFalse(resultSet.next());
+            clearHighScoresTable();
         } catch (SQLException e) {
             fail("SQLException: " + e.getMessage());
         }
@@ -99,6 +100,7 @@ public class TriviaControllerTest {
             assertEquals(playerName, resultSet.getString("name"));
             assertEquals(score, resultSet.getInt("score"));
             assertFalse(resultSet.next());
+            clearHighScoresTable();
         } catch (SQLException e) {
             fail("SQLException: " + e.getMessage());
         }

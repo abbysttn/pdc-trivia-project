@@ -42,6 +42,8 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
             if (resultSet.next()) {
             question += resultSet.getString("QUESTIONTEXT"); //checks if resultset has next and adds the question to the string
             }
+            
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -61,6 +63,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
             while (resultSet.next()) {
             answers.add(resultSet.getString("ANSWERTEXT")); //adds the answers to the answers list
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -81,6 +84,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
             if (resultSet.next()) {
             isCorrect = resultSet.getBoolean("ISCORRECT"); //makes iscorrect true or false depending on if the answer select was correct
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -100,6 +104,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
             if (resultSet.next()) {
             category += resultSet.getString("QUESTIONTYPE"); //adds the category to the category string
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -121,6 +126,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
                 
                 questionIDs.add(id);
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -169,6 +175,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
                     statement.executeUpdate(importQs);
                 }
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -194,6 +201,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
             
             chosenQ = questions.get(0);
             
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -234,6 +242,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
                 isCorrect = false;
             }
             
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -250,7 +259,7 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
     }
     
     public static boolean checkAnswerLength(String answer) { //checks if the inputted answer is within the bounds of the table
-        if (answer.length() >= 254 || answer.length() <= 19) {
+        if (answer.length() >= 254 || answer.length() <= 1) {
             return false;
         }
         
@@ -266,6 +275,8 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
 
             String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";
             statement.executeUpdate(clearPlayers);
+            
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }

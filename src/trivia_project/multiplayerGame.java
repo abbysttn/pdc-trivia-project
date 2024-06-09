@@ -93,6 +93,7 @@ public class multiplayerGame extends Game { //subclass of Game
 
             String insertQ = "INSERT INTO SAVEDGAMEQS (questionID) VALUES (" + id + ")";
             statement.executeUpdate(insertQ);
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }

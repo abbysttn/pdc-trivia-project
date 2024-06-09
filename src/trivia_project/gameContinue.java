@@ -39,6 +39,8 @@ public class gameContinue {
             } else {
                 questionsFound = false;
             }
+            
+            statement.close();
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
@@ -96,6 +98,8 @@ public class gameContinue {
             
             rtg.clearSavedGameQs();
             rtg.clearSavedPlayers();
+            
+            statement.close();
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
@@ -133,6 +137,8 @@ public class gameContinue {
                     return "Single Player";
                 }
             }
+            
+            statement.close();
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());

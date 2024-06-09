@@ -31,6 +31,7 @@ public class customisations {
 
             statement.executeUpdate(insertQ);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -42,22 +43,19 @@ public class customisations {
 
         try {
             statement = conn.createStatement();
-            String getCustom = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'CUSTOM\'";
+            String getCustom = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Custom\'";
 
             ResultSet resultSet = statement.executeQuery(getCustom);
 
             while (resultSet.next()) {
                 customQs++;
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
 
-        if (customQs >= 5) {
-            return true;
-        } else {
-            return false;
-        }
+        return customQs >= 5;
     }
 
     private int getQuestionID(String question) { //gets the id of the question
@@ -71,6 +69,7 @@ public class customisations {
             if (resultSet.next()) {
                 return resultSet.getInt("id");
             }
+            statement.close();
 
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
@@ -88,6 +87,7 @@ public class customisations {
 
             statement.executeUpdate(insertA);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }

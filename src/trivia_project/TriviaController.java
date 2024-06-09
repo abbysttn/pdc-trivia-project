@@ -160,9 +160,8 @@ public class TriviaController {
         view.addKeyListenerToTextField(view.getSpecialAnswerField(), new SpecialQFieldKeyListener());
 
     }
-    
-    //buttons and textfields implementation
 
+    //buttons and textfields implementation
     class ContinueGameListener implements ActionListener {
 
         @Override
@@ -194,7 +193,15 @@ public class TriviaController {
                 String answer = view.getSpecialAnswerField().getText();
 
                 if (Game.checkAnswerLength(answer)) {
-                    if (game.checkSpecialAnswer(view.getSpecialQ().getText(), answer)) {
+                    
+                    String question = "";
+                    if (view.getSpecialQ1().isShowing()) {
+                        question += view.getSpecialQ().getText() + " " + view.getSpecialQ1().getText();
+                    } else {
+                        question += view.getSpecialQ().getText();
+                    }
+                    
+                    if (game.checkSpecialAnswer(question, answer)) {
                         if (!model.getPlayerNames().isEmpty()) {
                             playerScore.addToMultiScoreSpecial(model.getPlayerIndex());
                             showScoresMulti();
@@ -239,6 +246,11 @@ public class TriviaController {
                 JOptionPane.showMessageDialog(view, "The game has been reset.", "Info", JOptionPane.INFORMATION_MESSAGE);
                 resetTriviaGame rtg = new resetTriviaGame();
                 rtg.clearFromDatabase();
+                view.getHS1().setText("1.");
+                view.getHS2().setText("2.");
+                view.getHS3().setText("3.");
+                view.getHS4().setText("4.");
+                view.getHS5().setText("5.");
             }
         }
     }
@@ -449,13 +461,13 @@ public class TriviaController {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                if (highScores.checkNameLength(view.getFindHS().getText())) {
-                    findHighScores(view.getFindHS().getText());
+                if (highScores.checkNameLength(view.getFindHS1().getText())) {
+                    findHighScores(view.getFindHS1().getText());
                     view.switchToSearchHS();
                 } else {
                     JOptionPane.showMessageDialog(view, "Please enter a name between 2 and 50 characters.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                view.getFindHS().setText("Search for another score?");
+                view.getFindHS1().setText("Search for another score?");
             }
         }
 
@@ -502,12 +514,12 @@ public class TriviaController {
 
                 if (Game.checkAnswerLength(view.getAnswerField().getText())) {
                     view.getInputtedA().setText(view.getAnswerField().getText());
-                    view.switchToAnswerCheck();
                     model.setWrongAnsrNum(3);
+                    view.switchToAnswerCheck();
                 } else {
                     JOptionPane.showMessageDialog(view, "Please enter an answer between 3 and 250 characters.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                view.getAnswerField().setText("Enter the correct answer here!");
+
             }
         }
 
@@ -594,6 +606,7 @@ public class TriviaController {
             customisations custom = new customisations();
             custom.addQtoCustom(model.getCustomQuestion());
             custom.addAnswerToCustom(model.getCustomQuestion(), view.getAnswerField().getText(), true);
+            view.getAnswerField().setText("Enter the correct answer here!");
             view.switchToAnswerWrong();
         }
     }
@@ -661,7 +674,6 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            increasePlayerIndex();
             checkAnswerMulti(0, model.getPlayerIndex());
         }
     }
@@ -670,7 +682,6 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            increasePlayerIndex();
             checkAnswerMulti(1, model.getPlayerIndex());
         }
     }
@@ -679,7 +690,6 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            increasePlayerIndex();
             checkAnswerMulti(2, model.getPlayerIndex());
         }
     }
@@ -688,7 +698,6 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            increasePlayerIndex();
             checkAnswerMulti(3, model.getPlayerIndex());
         }
     }
@@ -800,9 +809,8 @@ public class TriviaController {
             view.removeFromCustomM(view.getCustomM());
         }
     }
-    
-    //methods for switching and adding to GUI
 
+    //methods for switching and adding to GUI
     private void findHighScores(String name) {
         highScores hs = new highScores();
 
@@ -868,7 +876,16 @@ public class TriviaController {
             view.switchToSpecial();
             view.getSpecialQuestionGame().setText("SPECIAL QUESTION!!");
             String q = game.getSpecialQuestion();
-            view.getSpecialQ().setText(q);
+            if (q.length() >= 70) {
+                List<String> questionParts = splitQuestion(q);
+                view.getSpecialQ().setText(questionParts.get(0));
+                view.getSpecialQ1().setText(questionParts.get(1));
+                view.showSpecialQPart();
+            } else {
+                view.hideSpecialQPart();
+                view.getSpecialQ().setText(q);
+            }
+            model.setCurrentQuestionIndex(model.getCurrentQuestionIndex() + 1);
             return;
         }
 
@@ -916,13 +933,16 @@ public class TriviaController {
             if (model.getStreak() >= 3) {
                 playerScore.addToScoreSingleStreak();
                 model.setStreak(model.getStreak() + 1);
+                view.addStreak();
             } else {
                 playerScore.addToScoreSingle();
                 model.setStreak(model.getStreak() + 1);
+                view.removeStreak();
             }
         } else {
             playerScore.minusScore();
             model.setStreak(0);
+            view.removeStreak();
         }
 
         view.getScore().setText("Score: " + playerScore.scores.get(0));
@@ -931,12 +951,13 @@ public class TriviaController {
 
     private void checkAnswerMulti(int index, int playerIndex) {
         multiplayerGame game = multiplayerGame.getGameInstance();
+        System.out.println(model.getPlayerIndex());
 
         if (game.checkAnswer(model.getAnswers().get(index))) {
             if (model.getStreaks().get(playerIndex) == 3) {
                 playerScore.addToMultiScoreStreak(playerIndex);
                 model.getStreaks().set(playerIndex, model.getStreaks().get(playerIndex) + 1);
-                model.getPlayersOnStreak().add(model.getPlayerNames().get(playerIndex));
+                model.getPlayersOnStreak().put(model.getPlayerNames().get(playerIndex), playerIndex);
             } else if (model.getStreaks().get(playerIndex) >= 3) {
                 playerScore.addToMultiScoreStreak(playerIndex);
                 model.getStreaks().set(playerIndex, model.getStreaks().get(playerIndex) + 1);
@@ -947,10 +968,14 @@ public class TriviaController {
             }
         } else {
             playerScore.minusScoreMulti(playerIndex);
+            if (model.getStreaks().get(playerIndex) >= 3) {
+                model.removePlayerOnStreak(model.getPlayersOnStreak(), playerIndex, model.getPlayerNames().get(playerIndex));
+            }
             model.getStreaks().set(playerIndex, 0);
         }
 
         showScoresMulti();
+        increasePlayerIndex();
         newQuestionMulti();
     }
 
@@ -1017,7 +1042,7 @@ public class TriviaController {
 
         String names = "";
 
-        for (String name : model.getPlayersOnStreak()) {
+        for (String name : model.getPlayersOnStreak().keySet()) {
             names += name + ", ";
         }
 
@@ -1056,7 +1081,16 @@ public class TriviaController {
             view.switchToSpecial();
             view.getSpecialQuestionGame().setText("SPECIAL QUESTION FOR " + playerNames.get(model.getPlayerIndex()) + "!!");
             String q = game.getSpecialQuestion();
-            view.getSpecialQ().setText(q);
+            if (q.length() >= 70) {
+                List<String> questionParts = splitQuestion(q);
+                view.getSpecialQ().setText(questionParts.get(0));
+                view.getSpecialQ1().setText(questionParts.get(1));
+                view.showSpecialQPart();
+            } else {
+                view.hideSpecialQPart();
+                view.getSpecialQ().setText(q);
+            }
+            model.setCurrentQuestionIndex(model.getCurrentQuestionIndex() + 1);
             return;
         }
 

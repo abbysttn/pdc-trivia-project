@@ -53,6 +53,7 @@ public class highScores {
                 
                 num++;
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -71,7 +72,9 @@ public class highScores {
                 }
             }
             
+            statement.close();
             return -1;
+            
             
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());

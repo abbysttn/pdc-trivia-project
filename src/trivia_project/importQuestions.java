@@ -61,6 +61,7 @@ public class importQuestions {
                     statement.executeUpdate(importQs);
                 }
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -90,6 +91,7 @@ public class importQuestions {
                 statement.executeUpdate(importQs);
 
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -119,6 +121,7 @@ public class importQuestions {
                 statement.executeUpdate(importQs);
 
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -148,6 +151,7 @@ public class importQuestions {
                 statement.executeUpdate(importQs);
 
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -177,6 +181,7 @@ public class importQuestions {
                 statement.executeUpdate(importQs);
 
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -206,6 +211,7 @@ public class importQuestions {
                 statement.executeUpdate(importQs);
 
             }
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
@@ -233,6 +239,7 @@ public class importQuestions {
             String importQs = "INSERT INTO CURRENTGAMEQS (QUESTIONID) VALUES (" + questions.get(0) + ")";
             statement.executeUpdate(importQs);
 
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
