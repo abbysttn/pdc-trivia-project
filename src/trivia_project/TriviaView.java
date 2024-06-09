@@ -25,10 +25,12 @@ public class TriviaView extends javax.swing.JFrame {
         setupInitialPanel();
     }
 
-    public void setupInitialPanel() {
-        main.setBounds(0, 0, 650, 365); // Set the size of the main panel
+    public void setupInitialPanel() { //sets up the initial panel and ensures the correct size
+        main.setBounds(0, 0, 650, 365); 
         getContentPane().add(main);
     }
+    
+    //gets and returns all elements of the panels
 
     public JPanel getMainPage() {
         return mainPage;
@@ -3263,6 +3265,8 @@ public class TriviaView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    //methods for switching between each panel
+    
     public void switchToMain() {
         main.removeAll();
         main.add(mainPage);
@@ -3511,6 +3515,8 @@ public class TriviaView extends javax.swing.JFrame {
         main.revalidate();
     }
 
+    //methods for showing or hiding elements
+    
     public void addStreak() {
         singleGame.add(streakSingle);
         singleGame.repaint();
@@ -3570,6 +3576,8 @@ public class TriviaView extends javax.swing.JFrame {
         mainPage.repaint();
         mainPage.revalidate();
     }
+    
+    //methods for adding listeners to each element needed
 
     public void addActionListenerToButton(JButton button, ActionListener listener) {
         button.addActionListener(listener);

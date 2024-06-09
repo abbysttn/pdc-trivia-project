@@ -27,6 +27,7 @@ public class TriviaController {
         this.model = TriviaModel.getModelInstance();
         this.view = view;
 
+        //creates new listeners for each button and text field
         ActionListener switchToMainListener = new SwitchToMainActionListener();
         ActionListener exitListener = new exitActionListener();
         ActionListener switchToHowTo2Listener = new SwitchToHowTo2ActionListener();
@@ -159,6 +160,8 @@ public class TriviaController {
         view.addKeyListenerToTextField(view.getSpecialAnswerField(), new SpecialQFieldKeyListener());
 
     }
+    
+    //buttons and textfields implementation
 
     class ContinueGameListener implements ActionListener {
 
@@ -797,6 +800,8 @@ public class TriviaController {
             view.removeFromCustomM(view.getCustomM());
         }
     }
+    
+    //methods for switching and adding to GUI
 
     private void findHighScores(String name) {
         highScores hs = new highScores();

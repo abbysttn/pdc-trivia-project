@@ -80,7 +80,7 @@ public class highScores {
         return -1;
     }
     
-    public static boolean checkNameLength(String name) {
+    public static boolean checkNameLength(String name) { //checks if the inpputted name is within the bounds of the table
         if (name.length() >= 99 || name.length() <= 1) {
             return false;
         }

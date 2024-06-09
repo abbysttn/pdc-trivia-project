@@ -87,7 +87,7 @@ public class multiplayerGame extends Game { //subclass of Game
         }
     }
 
-    private void insertQs(int id) {
+    private void insertQs(int id) { //inserts the current game questions into the saved table
         try {
             statement = conn.createStatement();
 
@@ -98,17 +98,4 @@ public class multiplayerGame extends Game { //subclass of Game
         }
     }
 
-    private void clearTable() {
-        try {
-            statement = conn.createStatement();
-
-            String clearTable = "DELETE FROM SAVEDGAMEQS";
-            statement.executeUpdate(clearTable);
-
-            String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";
-            statement.executeUpdate(clearPlayers);
-        } catch (SQLException ex) {
-            System.err.println("SQLException: " + ex.getMessage());
-        }
-    }
 }

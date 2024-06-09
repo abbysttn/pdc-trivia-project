@@ -24,7 +24,7 @@ public class customisations {
         conn = dbManager.getConnection();
     }
 
-    public void addQtoCustom(String question) { //lets users add their own questions and imports them into the CustomQs file
+    public void addQtoCustom(String question) { //lets users add their own questions and imports them into the CustomQs table
         try {
             statement = conn.createStatement();
             String insertQ = "INSERT INTO questions (questionText, questionType) VALUES (\'" + question + "\', \'Custom\')";
@@ -36,7 +36,7 @@ public class customisations {
         }
     }
     
-    public boolean checkCustomQuestions() {
+    public boolean checkCustomQuestions() { //checks if there are enough custom questions for the game
 
         int customQs = 0;
 
@@ -60,7 +60,7 @@ public class customisations {
         }
     }
 
-    private int getQuestionID(String question) {
+    private int getQuestionID(String question) { //gets the id of the question
         try {
             statement = conn.createStatement();
             String getQID = "SELECT * FROM questions WHERE questionText = \'" + question + "\'";
@@ -79,7 +79,7 @@ public class customisations {
         return 0;
     }
 
-    public void addAnswerToCustom(String question, String answer, boolean isCorrect) {
+    public void addAnswerToCustom(String question, String answer, boolean isCorrect) { //adds answers to the custom question
         int qID = getQuestionID(question);
 
         try {

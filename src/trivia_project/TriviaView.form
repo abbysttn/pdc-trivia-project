@@ -456,7 +456,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="normalQuestion" pref="638" max="32767" attributes="0"/>
+                              <Component id="normalQuestion" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="toMainHowTo" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -691,7 +691,7 @@
                               <Component id="normalQuestion2" alignment="0" max="32767" attributes="0"/>
                               <Component id="question1" alignment="0" max="32767" attributes="0"/>
                               <Component id="question2" alignment="1" max="32767" attributes="0"/>
-                              <Component id="normalQuestion3" alignment="0" pref="638" max="32767" attributes="0"/>
+                              <Component id="normalQuestion3" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -922,7 +922,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="normalQuestion4" pref="638" max="32767" attributes="0"/>
+                                  <Component id="normalQuestion4" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
@@ -1053,21 +1053,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="HS1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="topHighScores" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="HS2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="HS3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="HS4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="HS5" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="topHighScores" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HS2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HS3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HS4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="HS5" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="toMainHS1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="130" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="title1" min="-2" pref="326" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                               <Component id="exit4" min="-2" max="-2" attributes="0"/>
@@ -1107,7 +1102,7 @@
                       <Component id="HS4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="HS5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="findHS" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
@@ -1295,18 +1290,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="foundHS" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="searchedHS" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="foundHS" alignment="1" max="32767" attributes="0"/>
+                          <Component id="searchedHS" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="toMainHS2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="141" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="title2" min="-2" pref="303" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                               <Component id="exit5" min="-2" max="-2" attributes="0"/>
@@ -1494,7 +1484,7 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                                           <Component id="title3" min="-2" pref="388" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="121" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
@@ -1678,7 +1668,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="579" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="exit6" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -1706,7 +1696,7 @@
                           <Component id="inputQ" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="inputtedQ" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="continueQ" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">

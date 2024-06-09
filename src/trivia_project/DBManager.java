@@ -15,9 +15,9 @@ import java.sql.SQLException;
  */
 public final class DBManager {
 
-    private static final String USER_NAME = "triviaUser"; //your DB username
-    private static final String PASSWORD = "trivia"; //your DB password
-    private static final String URL = "jdbc:derby:TriviaGameDB; create=true";  //url of the DB host
+    private static final String USER_NAME = "triviaUser"; //DB username
+    private static final String PASSWORD = "trivia"; //DB password
+    private static final String URL = "jdbc:derby:TriviaGameDB; create=true";  //url of DB host
 
     Connection conn;
 

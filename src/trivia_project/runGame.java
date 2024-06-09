@@ -12,7 +12,7 @@ package trivia_project;
 
 public class runGame {
 
-    public static void main(String[] args) { //loads all highscores into the game and runs the main page
+    public static void main(String[] args) { //loads the database into the game and runs the start page
         DBManager dbManager = new DBManager(); //connect database
         dbManager.getConnection();
         

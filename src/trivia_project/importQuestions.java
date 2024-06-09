@@ -29,13 +29,13 @@ public class importQuestions {
         conn = dbManager.getConnection();
     }
 
-    public void importCategory(List<String> categorys) {
+    public void importCategory(List<String> categorys) { //adds the allowed categories into the list
         for (String category : categorys) {
         selectedTopics.add(category);
         }
     }
 
-    public void importQuestions() { //imports the history questions into the historyQuestions hashmap
+    public void importQuestions() { //imports the history questions into the current game table
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -66,7 +66,7 @@ public class importQuestions {
         }
     }
 
-    public void importArtsQuestions() { //imports the arts questions into the artsQuestions hashmap
+    public void importArtsQuestions() { //imports the arts questions into the current game table
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -95,7 +95,7 @@ public class importQuestions {
         }
     }
 
-    public void importScienceQuestions() { //imports the science questions into the scienceQuestions hashmap
+    public void importScienceQuestions() { //imports the science questions into the current game table
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -124,7 +124,7 @@ public class importQuestions {
         }
     }
 
-    public void importSportsQuestions() { //imports the sports questions into the sportsQuestions hashmap
+    public void importSportsQuestions() { //imports the sports questions into the current game table
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -153,7 +153,7 @@ public class importQuestions {
         }
     }
 
-    public void importGeographyQuestions() { //imports the geography questions into the geographyQuestions hashmap
+    public void importGeographyQuestions() { //imports the geography questions into the current game table
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -182,7 +182,7 @@ public class importQuestions {
         }
     }
 
-    public void importCustomQuestions() { //imports the custom questions into the customQuestions hashmap
+    public void importCustomQuestions() { //imports the custom questions into the current game table
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -211,7 +211,7 @@ public class importQuestions {
         }
     }
 
-    public void getWrittenQuestion() {
+    public void getWrittenQuestion() { //gets a random written question
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";

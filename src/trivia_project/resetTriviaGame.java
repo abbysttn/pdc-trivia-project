@@ -26,7 +26,7 @@ public class resetTriviaGame {
         conn = dbManager.getConnection();
     }
 
-    public void clearFromDatabase() {
+    public void clearFromDatabase() { //resets all customised tables
         clearSavedGameQs();
         clearSavedPlayers();
         clearCustomAs();
@@ -35,7 +35,7 @@ public class resetTriviaGame {
         clearCurrentGameQs();
     }
 
-    private void clearCustomQs() {
+    private void clearCustomQs() { //clears the custom questions from the questions table
         try {
             statement = conn.createStatement();
             String deleteQs = "DELETE FROM QUESTIONS WHERE QUESTIONTYPE = \'Custom\'";
@@ -47,7 +47,7 @@ public class resetTriviaGame {
         }
     }
 
-    private List<Integer> getCustomQsId() {
+    private List<Integer> getCustomQsId() { //gets the custom questions id
         List<Integer> ids = new ArrayList<>();
         try {
             statement = conn.createStatement();
@@ -67,7 +67,7 @@ public class resetTriviaGame {
         return ids;
     }
 
-    public void clearSavedGameQs() {
+    public void clearSavedGameQs() { //clears the saved game questions
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM SAVEDGAMEQS";
@@ -78,7 +78,7 @@ public class resetTriviaGame {
         }
     }
     
-    public void clearCurrentGameQs() {
+    public void clearCurrentGameQs() { //clears the current game questions
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";
@@ -89,7 +89,7 @@ public class resetTriviaGame {
         }
     }
     
-    private void clearHighscores() {
+    private void clearHighscores() { //clears all highscores
         try {
             statement = conn.createStatement();
             String clearHS = "DELETE FROM HIGH_SCORES";
@@ -100,7 +100,7 @@ public class resetTriviaGame {
         }
     }
 
-    public void clearSavedPlayers() {
+    public void clearSavedPlayers() { //clears the saved game players
         try {
             statement = conn.createStatement();
             String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";
@@ -111,7 +111,7 @@ public class resetTriviaGame {
         }
     }
 
-    private void clearCustomAs() {
+    private void clearCustomAs() { //clears the custom answers
         List<Integer> ids = getCustomQsId();
 
         try {

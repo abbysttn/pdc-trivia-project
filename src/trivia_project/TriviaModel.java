@@ -42,7 +42,7 @@ public class TriviaModel {
     public static TriviaModel model;
     
     
-    public static TriviaModel getModelInstance() { //ensures only one instance of multiplayer is created and shared across the class
+    public static TriviaModel getModelInstance() { //ensures only one instance of model is created and shared
         if (model == null) {
             model = new TriviaModel();
         }
@@ -50,6 +50,8 @@ public class TriviaModel {
         return model;
     }
     
+    
+    //methods for getting and setting variables needed for the GUI
     public int getRandomNumber() {
         return randomNumber;
     }

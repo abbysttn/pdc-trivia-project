@@ -26,7 +26,7 @@ public class gameContinue {
         conn = dbManager.getConnection();
     }
 
-    public boolean checkGame() {
+    public boolean checkGame() { //checks if there is a game saved
         boolean questionsFound = false;
         try {
             statement = conn.createStatement();
@@ -47,7 +47,7 @@ public class gameContinue {
         return questionsFound;
     }
 
-    public void importGame() {
+    public void importGame() { //imports the game based on the type
         try {
             statement = conn.createStatement();
 
@@ -102,12 +102,12 @@ public class gameContinue {
         }
     }
 
-    private void importSingleGame(int score) {
+    private void importSingleGame(int score) { //imports the single game data
         playerScore.newSingleScore();
         playerScore.scores.set(0, score);
     }
 
-    private void importMultiGame(List<String> players, List<Integer> scores) {
+    private void importMultiGame(List<String> players, List<Integer> scores) { //imports the multi game data
         TriviaModel model = TriviaModel.getModelInstance();
         model.setPlayerNames(players);
         model.setPlayerAmount(scores.size());
@@ -120,7 +120,7 @@ public class gameContinue {
         }
     }
 
-    public String getGameType() {
+    public String getGameType() { //returns the game type
         try {
             statement = conn.createStatement();
             String getQs = "SELECT * FROM SAVEDGAMEPLAYER";
