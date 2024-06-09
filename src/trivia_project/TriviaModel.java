@@ -39,6 +39,17 @@ public class TriviaModel {
     private final Random rand = new Random();
     private final int randomNumber = rand.nextInt(10) + 5;
     
+    public static TriviaModel model;
+    
+    
+    public static TriviaModel getModelInstance() { //ensures only one instance of multiplayer is created and shared across the class
+        if (model == null) {
+            model = new TriviaModel();
+        }
+
+        return model;
+    }
+    
     public int getRandomNumber() {
         return randomNumber;
     }

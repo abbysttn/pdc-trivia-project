@@ -18,7 +18,7 @@ public class runGame {
         dbManager.getConnection();
         
         
-        TriviaModel model = new TriviaModel();
+        TriviaModel model = TriviaModel.getModelInstance();
         TriviaView view = new TriviaView();
         TriviaController controller = new TriviaController(model, view);
         

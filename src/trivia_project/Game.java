@@ -29,9 +29,6 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         conn = dbManager.getConnection();
     }
 
-    static HashMap<String, List<String>> randomGameQuestions = new HashMap<>();
-    static HashMap<String, List<String>> askedQs = new HashMap<>();
-
     public abstract void savePosition(List<Integer> scores, int currentQuestionIndex);
     
     public String getQuestion(int id) {
@@ -176,5 +173,72 @@ public abstract class Game { //superclass for multiplayer and singleplayer games
         } catch (SQLException ex) {
             System.err.println("SQLException: " + ex.getMessage());
         }
+    }
+    
+    public String getSpecialQuestion() {
+        String chosenQ = "";
+        
+        try {
+            statement = conn.createStatement();
+            String getWrittenQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTYPE = \'Written\'";
+            
+            ResultSet rs = statement.executeQuery(getWrittenQs);
+            
+            List<String> questions = new ArrayList<>();
+            
+            while (rs.next()) {
+                String q = rs.getString("QUESTIONTEXT");
+                questions.add(q);
+            }
+            
+            Collections.shuffle(questions);
+            
+            chosenQ = questions.get(0);
+            
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+        
+        return chosenQ;
+    }
+    
+    public boolean checkSpecialAnswer(String question, String userAnswer) {
+        boolean isCorrect = false;
+        
+        try {
+            statement = conn.createStatement();
+            String getWrittenQs = "SELECT * FROM QUESTIONS WHERE QUESTIONTEXT = \'" + question + "\'";
+            
+            ResultSet rs = statement.executeQuery(getWrittenQs);
+            
+            int qID = 0;
+            
+            if (rs.next()) {
+                qID = rs.getInt("ID");
+            }
+            
+            String getAnswer = "SELECT * FROM ANSWERS WHERE QUESTIONID = " + qID;
+            
+            ResultSet resultSet = statement.executeQuery(getAnswer);
+            
+            String correctAnswer = "";
+            
+            if (resultSet.next()) {
+                correctAnswer = resultSet.getString("ANSWERTEXT");
+            }
+            
+            String uAnswer = userAnswer.toLowerCase();
+            
+            if (correctAnswer.equalsIgnoreCase(uAnswer)) {
+                isCorrect = true;
+            } else {
+                isCorrect = false;
+            }
+            
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+        
+        return isCorrect;
     }
 }

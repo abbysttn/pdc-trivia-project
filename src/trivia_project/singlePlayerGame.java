@@ -40,7 +40,6 @@ public class singlePlayerGame extends Game { //subclass of Game
 
             while (resultSet.next()) {
                 if (count < currentQuestionIndex) {
-                    System.out.println(count);
                     count++;
                 } else {
                     int id = resultSet.getInt("QUESTIONID");

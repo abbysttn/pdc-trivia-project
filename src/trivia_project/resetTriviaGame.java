@@ -78,7 +78,7 @@ public class resetTriviaGame {
         }
     }
     
-    private void clearCurrentGameQs() {
+    public void clearCurrentGameQs() {
         try {
             statement = conn.createStatement();
             String clearTable = "DELETE FROM CURRENTGAMEQS";

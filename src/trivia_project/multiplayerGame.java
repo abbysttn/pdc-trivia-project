@@ -4,78 +4,111 @@
  */
 package trivia_project;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import static trivia_project.Game.askedQs;
-import static trivia_project.Game.randomGameQuestions;
 
 /**
  *
  * @author abbys
  */
 public class multiplayerGame extends Game { //subclass of Game
-    
+
     private List<String> multiPlayers = new ArrayList<>();
-    
-    private HashMap<String, Integer> streaks = new HashMap<>();
-    
-    private int currentPlayerIndex = 0;
-    
+
     private static multiplayerGame gameInstance;
-    
+
+    private Statement statement;
+    private final DBManager dbManager;
+    private final Connection conn;
+
+    public multiplayerGame() {
+        dbManager = new DBManager();
+        conn = dbManager.getConnection();
+    }
+
     public static multiplayerGame getGameInstance() { //ensures only one instance of multiplayer is created and shared across the class
         if (gameInstance == null) {
             gameInstance = new multiplayerGame();
         }
-        
+
         return gameInstance;
     }
-    
+
     public List<String> getPlayers() { //gets the list of players
         return multiPlayers;
     }
-    
+
     public void setPlayers(List<String> players) { //sets the list of players
         this.multiPlayers = players;
     }
-    
-    
+
     @Override
-    public void savePosition(List<Integer> scores, int id) { //saves the position of the game, scores, and players for future pickup
-        multiplayerGame game = getGameInstance();
-        List<String> players = game.getPlayers();
-        int playerIndex = 0;
-        try (
-                 FileWriter fw = new FileWriter("./resources/TriviaGameContinue.txt")) {
+    public void savePosition(List<Integer> scores, int currentQuestionIndex) { //saves the position of the game, scores, and players for future pickup
+        try {
+            statement = conn.createStatement();
+
+            clearTable();
+
+            String getQs = "SELECT * FROM CURRENTGAMEQS";
+
+            int count = 1;
+
+            ResultSet resultSet = statement.executeQuery(getQs);
+
+            while (resultSet.next()) {
+                if (count < currentQuestionIndex) {
+                    count++;
+                } else {
+                    int id = resultSet.getInt("QUESTIONID");
+                    insertQs(id);
+                    count++;
+                }
+            }
+
+            TriviaModel model = TriviaModel.getModelInstance();
+
+            List<String> players = model.getPlayerNames();
             
-            fw.write("Multiplayer\n");
-            
-            for (int score : scores) {
-                fw.write("Score:" + players.get(playerIndex) + "|" + score + "\n");
-                
+            int playerIndex = 0;
+
+            for (String player : players) {
+                String insertQ = "INSERT INTO SAVEDGAMEPLAYER (playerName, score) VALUES (\'" + player + "\', " + scores.get(playerIndex) + ")";
+                statement.executeUpdate(insertQ);
                 playerIndex++;
             }
-            
-            for (String askedQuestions : askedQs.keySet()) {
-                randomGameQuestions.remove(askedQuestions);
-            }
-            
-            for (Map.Entry<String, List<String>> entry : randomGameQuestions.entrySet()) {
-                StringBuilder line = new StringBuilder(entry.getKey() + " | ");
-                List<String> answers = entry.getValue();
-                for (String ans : answers) {
-                    line.append(ans).append(" | ");
-                }
-                line.delete(line.length() - 3, line.length());
-                fw.write(line.toString() + "\n");
-            }
-            
-        } catch (IOException e) {
-            System.out.println("Error writing to file ");
+
+            statement.close();
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
+
+    private void insertQs(int id) {
+        try {
+            statement = conn.createStatement();
+
+            String insertQ = "INSERT INTO SAVEDGAMEQS (questionID) VALUES (" + id + ")";
+            statement.executeUpdate(insertQ);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
+
+    private void clearTable() {
+        try {
+            statement = conn.createStatement();
+
+            String clearTable = "DELETE FROM SAVEDGAMEQS";
+            statement.executeUpdate(clearTable);
+
+            String clearPlayers = "DELETE FROM SAVEDGAMEPLAYER";
+            statement.executeUpdate(clearPlayers);
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
         }
     }
 }

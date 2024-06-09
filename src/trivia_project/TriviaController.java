@@ -20,11 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class TriviaController {
 
-    private TriviaModel model;
+    private static TriviaModel model;
     private TriviaView view;
 
     public TriviaController(TriviaModel model, TriviaView view) {
-        this.model = model;
+        this.model = TriviaModel.getModelInstance();
         this.view = view;
 
         ActionListener switchToMainListener = new SwitchToMainActionListener();
@@ -33,6 +33,7 @@ public class TriviaController {
         ActionListener switchToAnswerListener = new SwitchToAnswers();
         ActionListener switchToCustomListener = new SwitchToCustomiseListener();
         ActionListener switchToNewGameListener = new SwitchToNewGameListener();
+        ActionListener saveGameListener = new SaveGameListener();
 
         view.addActionListenerToButton(view.getToMain(), switchToMainListener);
         view.addActionListenerToButton(view.getToStart(), new SwitchToStartListener());
@@ -51,8 +52,9 @@ public class TriviaController {
         view.addActionListenerToButton(view.getExit11(), exitListener);
         view.addActionListenerToButton(view.getExit12(), exitListener);
         view.addActionListenerToButton(view.getExit13(), exitListener);
-        view.addActionListenerToButton(view.getExit14(), new SaveGameListener());
+        view.addActionListenerToButton(view.getExit14(), saveGameListener);
         view.addActionListenerToButton(view.getExit15(), exitListener);
+        view.addActionListenerToButton(view.getExit22(), saveGameListener);
 
         view.addActionListenerToButton(view.getHowTo(), new SwitchToHowToListener());
         view.addActionListenerToButton(view.getNewGame(), switchToNewGameListener);
@@ -132,7 +134,7 @@ public class TriviaController {
         view.addActionListenerToButton(view.getCustomM(), new SelectedCustomM());
         view.addActionListenerToButton(view.getToMainM1(), switchToMainListener);
 
-        view.addActionListenerToButton(view.getExit18(), exitListener);
+        view.addActionListenerToButton(view.getExit18(), saveGameListener);
         view.addActionListenerToButton(view.getAns9(), new Ans9Listener());
         view.addActionListenerToButton(view.getAns10(), new Ans10Listener());
         view.addActionListenerToButton(view.getAns11(), new Ans11Listener());
@@ -141,6 +143,8 @@ public class TriviaController {
         view.addActionListenerToButton(view.getExit21(), exitListener);
         view.addActionListenerToButton(view.getToStartEndM(), switchToMainListener);
         view.addActionListenerToButton(view.getReplayM(), switchToNewGameListener);
+
+        view.addActionListenerToButton(view.getContinueGame(), new ContinueGameListener());
 
         view.addKeyListenerToTextField(view.getHowToSpecial(), new PracticeKeyListener());
 
@@ -152,7 +156,69 @@ public class TriviaController {
         view.addKeyListenerToTextField(view.getWrongAnswerField(), new CustomWrongAnswerFieldKeyListener());
 
         view.addKeyListenerToTextField(view.getPlayerNameField(), new PlayerNamesFieldKeyListener());
+        view.addKeyListenerToTextField(view.getSpecialAnswerField(), new SpecialQFieldKeyListener());
 
+    }
+
+    class ContinueGameListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            gameContinue gc = new gameContinue();
+            String gameType = gc.getGameType();
+            
+            JOptionPane.showMessageDialog(view, "You have a " + gameType + " game saved.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            int response = JOptionPane.showConfirmDialog(view, "Would you like to continue this game?", "Confirm", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(view, "Importing Game...", "Info", JOptionPane.INFORMATION_MESSAGE);
+                gc.importGame();
+                if (gameType.equals("Single Player")) {
+                    startSavedSingle();
+                } else {
+                    startSavedMulti();
+                }
+            }
+        }
+    }
+
+    class SpecialQFieldKeyListener implements KeyListener {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            singlePlayerGame game = new singlePlayerGame();
+
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                String answer = view.getSpecialAnswerField().getText();
+
+                if (game.checkSpecialAnswer(view.getSpecialQ().getText(), answer)) {
+                    if (!model.getPlayerNames().isEmpty()) {
+                        playerScore.addToMultiScoreSpecial(model.getPlayerIndex());
+                        showScoresMulti();
+                        view.switchToMultiGame();
+                    } else {
+                        playerScore.addToScoreSingleSpecial();
+                        view.getScore().setText("Score: " + playerScore.scores.get(0));
+                        view.switchToSingleGame();
+                    }
+                    model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
+                } else {
+                    if (!model.getPlayerNames().isEmpty()) {
+                        view.switchToMultiGame();
+                    } else {
+                        view.switchToSingleGame();
+                    }
+                    model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
+                }
+            }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
     }
 
     class SwitchToResetListener implements ActionListener {
@@ -181,8 +247,20 @@ public class TriviaController {
         @Override
         public void actionPerformed(ActionEvent evt) {
             singlePlayerGame game = new singlePlayerGame();
-            game.savePosition(playerScore.scores, model.getCurrentQuestionIndex());
-            System.exit(0);
+            multiplayerGame mGame = multiplayerGame.getGameInstance();
+
+            int response = JOptionPane.showConfirmDialog(view, "Are you sure want to leave?", "Confirm", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            if (!model.getPlayerNames().isEmpty()) {
+                mGame.savePosition(playerScore.scores, model.getCurrentQuestionIndex());
+                System.exit(0);
+            } else {
+                game.savePosition(playerScore.scores, model.getCurrentQuestionIndex());
+                System.exit(0);
+            }
         }
     }
 
@@ -249,6 +327,12 @@ public class TriviaController {
         @Override
         public void actionPerformed(ActionEvent evt) {
             view.switchToMain();
+            gameContinue gc = new gameContinue();
+            if (gc.checkGame()) {
+                view.showContinueGame();
+            } else {
+                view.hideContinueGame();
+            }
         }
     }
 
@@ -538,8 +622,8 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            checkAnswerMulti(0, model.getPlayerIndex());
             increasePlayerIndex();
+            checkAnswerMulti(0, model.getPlayerIndex());
         }
     }
 
@@ -547,8 +631,8 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            checkAnswerMulti(1, model.getPlayerIndex());
             increasePlayerIndex();
+            checkAnswerMulti(1, model.getPlayerIndex());
         }
     }
 
@@ -556,8 +640,8 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            checkAnswerMulti(2, model.getPlayerIndex());
             increasePlayerIndex();
+            checkAnswerMulti(2, model.getPlayerIndex());
         }
     }
 
@@ -565,8 +649,8 @@ public class TriviaController {
 
         @Override
         public void actionPerformed(ActionEvent evt) {
-            checkAnswerMulti(3, model.getPlayerIndex());
             increasePlayerIndex();
+            checkAnswerMulti(3, model.getPlayerIndex());
         }
     }
 
@@ -738,10 +822,12 @@ public class TriviaController {
 
     private void newQuestion() {
         singlePlayerGame game = new singlePlayerGame();
-        game.randomGamesQuestions();
-        
+
         if (model.getSpecialQuestionNum() == model.getRandomNumber()) {
             view.switchToSpecial();
+            view.getSpecialQuestionGame().setText("SPECIAL QUESTION!!");
+            String q = game.getSpecialQuestion();
+            view.getSpecialQ().setText(q);
             return;
         }
 
@@ -831,6 +917,18 @@ public class TriviaController {
         playerScore.newSingleScore();
         newQuestion();
     }
+    
+    private void startSavedSingle() {
+        singlePlayerGame game = new singlePlayerGame();
+        view.switchToSingleGame();
+        view.getScore().setText("Score: " + playerScore.scores.get(0));
+
+        model.setStreak(0);
+        model.setCurrentQuestionIndex(0);
+        model.setQuestionIds(game.getQuestionID());
+
+        newQuestion();
+    }
 
     private void startMulti() {
         multiplayerGame game = multiplayerGame.getGameInstance();
@@ -841,6 +939,18 @@ public class TriviaController {
         model.setQuestionIds(game.getQuestionID());
 
         playerScore.newMultiScore(model.getPlayerAmount());
+        showScoresMulti();
+        newQuestionMulti();
+    }
+    
+    private void startSavedMulti() {
+        multiplayerGame game = multiplayerGame.getGameInstance();
+        view.switchToMultiGame();
+
+        model.addStreaks();
+        model.setCurrentQuestionIndex(0);
+        model.setQuestionIds(game.getQuestionID());
+
         showScoresMulti();
         newQuestionMulti();
     }
@@ -866,14 +976,14 @@ public class TriviaController {
             case 3:
                 view.getScore1().setText(players.get(0) + ": " + playerScore.scores.get(0));
                 view.getScore2().setText(players.get(1) + ": " + playerScore.scores.get(1));
-                view.getScore3().setText(playerScore.scores.get(2) + " :" + players.get(2));
+                view.getScore3().setText(players.get(2) + ": " + playerScore.scores.get(2));
                 view.getScore4().setText("");
                 break;
             case 4:
                 view.getScore1().setText(players.get(0) + ": " + playerScore.scores.get(0));
                 view.getScore2().setText(players.get(1) + ": " + playerScore.scores.get(1));
-                view.getScore3().setText(playerScore.scores.get(2) + " :" + players.get(2));
-                view.getScore4().setText(playerScore.scores.get(3) + " :" + players.get(3));
+                view.getScore3().setText(players.get(2) + ": " + playerScore.scores.get(2));
+                view.getScore4().setText(players.get(3) + ": " + playerScore.scores.get(3));
                 break;
             default:
                 break;
@@ -882,19 +992,32 @@ public class TriviaController {
 
     private void newQuestionMulti() {
         multiplayerGame game = multiplayerGame.getGameInstance();
-        game.randomGamesQuestions();
-        
+
+        List<String> playerNames = model.getPlayerNames();
+
         if (model.getSpecialQuestionNum() == model.getRandomNumber()) {
             view.switchToSpecial();
+            view.getSpecialQuestionGame().setText("SPECIAL QUESTION FOR " + playerNames.get(model.getPlayerIndex()) + "!!");
+            String q = game.getSpecialQuestion();
+            view.getSpecialQ().setText(q);
             return;
-        } //?? not working
-        
-        System.out.println(model.getRandomNumber());
+        }
 
         if (model.getQuestionIds().size() != model.getCurrentQuestionIndex()) {
             model.setAnswers(game.getAnswers(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
-            view.getMultiQuestion().setText(game.getQuestion(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
-            view.getCategoryNameM().setText("The category is: " + game.getCategory(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
+
+            String question = game.getQuestion(model.getQuestionIds().get(model.getCurrentQuestionIndex()));
+
+            if (question.length() >= 70) {
+                List<String> questionParts = splitQuestion(question);
+                view.getMultiQuestion().setText(questionParts.get(0));
+                view.getMultiQuestion1().setText(questionParts.get(1));
+                view.showSecondQuestionPartM();
+            } else {
+                view.hideSecondQuestionPartM();
+                view.getMultiQuestion().setText(game.getQuestion(model.getQuestionIds().get(model.getCurrentQuestionIndex())));
+            }
+            view.getCategoryNameM().setText("The category is: " + game.getCategory(model.getQuestionIds().get(model.getCurrentQuestionIndex())) + " - It is " + playerNames.get(model.getPlayerIndex()) + "'s turn!");
 
             view.getAns9().setText(model.getAnswers().get(0));
             view.getAns10().setText(model.getAnswers().get(1));
@@ -902,12 +1025,12 @@ public class TriviaController {
             view.getAns12().setText(model.getAnswers().get(3));
 
             model.setCurrentQuestionIndex(model.getCurrentQuestionIndex() + 1);
+            model.increaseSpecialQuestionNum(model.getSpecialQuestionNum());
         } else {
             view.switchToEndMulti();
             printPlayerScores();
 
             List<Integer> playerAndScore = getHighScore();
-            List<String> playerNames = model.getPlayerNames();
 
             int response = JOptionPane.showConfirmDialog(view, playerNames.get(playerAndScore.get(0)) + " has the highest score. Would you like to added to the highscore board?", "Confirm", JOptionPane.YES_NO_OPTION);
             if (response == JOptionPane.YES_OPTION) {
@@ -917,6 +1040,28 @@ public class TriviaController {
             }
 
         }
+    }
+
+    private List<String> splitQuestion(String question) {
+        List<String> result = new ArrayList<>();
+        int maxLength = 70;
+        int start = 0;
+
+        while (start < question.length()) {
+            int end = Math.min(question.length(), start + maxLength);
+
+            if (end < question.length()) {
+                int lastSpace = question.lastIndexOf(' ', end);
+                if (lastSpace > start) {
+                    end = lastSpace;
+                }
+            }
+
+            result.add(question.substring(start, end).trim());
+            start = end + 1;
+        }
+
+        return result;
     }
 
     private List<Integer> getHighScore() {
@@ -951,14 +1096,14 @@ public class TriviaController {
             case 3:
                 view.getScore1M().setText(players.get(0) + ": " + playerScore.scores.get(0));
                 view.getScore2M().setText(players.get(1) + ": " + playerScore.scores.get(1));
-                view.getScore3M().setText(playerScore.scores.get(2) + " :" + players.get(2));
+                view.getScore3M().setText(players.get(2) + ": " + playerScore.scores.get(2));
                 view.getScore4M().setText("");
                 break;
             case 4:
                 view.getScore1M().setText(players.get(0) + ": " + playerScore.scores.get(0));
                 view.getScore2M().setText(players.get(1) + ": " + playerScore.scores.get(1));
-                view.getScore3M().setText(playerScore.scores.get(2) + " :" + players.get(2));
-                view.getScore4M().setText(playerScore.scores.get(3) + " :" + players.get(3));
+                view.getScore3M().setText(players.get(2) + ": " + playerScore.scores.get(2));
+                view.getScore4M().setText(players.get(3) + ": " + playerScore.scores.get(3));
                 break;
             default:
                 break;

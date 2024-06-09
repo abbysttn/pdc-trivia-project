@@ -473,6 +473,10 @@ public class TriviaView extends javax.swing.JFrame {
     public JButton getExit22() {
         return exit22;
     }
+    
+    public JButton getContinueGame() {
+        return continueGame;
+    }
 
     public JTextField getHowToSpecial() {
         return howToSpecial;
@@ -609,6 +613,18 @@ public class TriviaView extends javax.swing.JFrame {
     public JLabel getSpecialQuestionGame() {
         return specialQuestionGame;
     }
+    
+    public JLabel getSpecialQ() {
+        return specialQ;
+    }
+    
+    public JLabel getSingleQuestion1() {
+        return singleQuestion1;
+    }
+    
+    public JLabel getMultiQuestion1() {
+        return multiQuestion1;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -633,6 +649,7 @@ public class TriviaView extends javax.swing.JFrame {
         toHighScores = new javax.swing.JButton();
         customise = new javax.swing.JButton();
         reset = new javax.swing.JButton();
+        continueGame = new javax.swing.JButton();
         howToPlay = new javax.swing.JPanel();
         howToInstruct1 = new javax.swing.JPanel();
         normalQuestion = new javax.swing.JLabel();
@@ -745,6 +762,7 @@ public class TriviaView extends javax.swing.JFrame {
         score = new javax.swing.JLabel();
         streakSingle = new javax.swing.JLabel();
         exit14 = new javax.swing.JButton();
+        singleQuestion1 = new javax.swing.JLabel();
         endSingleGame = new javax.swing.JPanel();
         finalScoreSingle = new javax.swing.JLabel();
         question5 = new javax.swing.JLabel();
@@ -784,6 +802,7 @@ public class TriviaView extends javax.swing.JFrame {
         score3 = new javax.swing.JLabel();
         score4 = new javax.swing.JLabel();
         playersOnStreak = new javax.swing.JLabel();
+        multiQuestion1 = new javax.swing.JLabel();
         multiplayerGameOptions = new javax.swing.JPanel();
         title13 = new javax.swing.JLabel();
         question8 = new javax.swing.JLabel();
@@ -813,7 +832,7 @@ public class TriviaView extends javax.swing.JFrame {
         score3M = new javax.swing.JLabel();
         score4M = new javax.swing.JLabel();
         specialQuestion = new javax.swing.JPanel();
-        specialTitle = new javax.swing.JLabel();
+        specialQ = new javax.swing.JLabel();
         specialQuestionGame = new javax.swing.JLabel();
         exit22 = new javax.swing.JButton();
         specialAnswerField = new javax.swing.JTextField();
@@ -880,6 +899,7 @@ public class TriviaView extends javax.swing.JFrame {
         mainPage.setBackground(new java.awt.Color(247, 237, 226));
         mainPage.setMinimumSize(new java.awt.Dimension(650, 365));
         mainPage.setPreferredSize(new java.awt.Dimension(650, 365));
+        mainPage.setLayout(null);
 
         toStart.setBackground(new java.awt.Color(255, 204, 102));
         toStart.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
@@ -887,16 +907,22 @@ public class TriviaView extends javax.swing.JFrame {
         toStart.setText("<");
         toStart.setBorderPainted(false);
         toStart.setContentAreaFilled(false);
+        mainPage.add(toStart);
+        toStart.setBounds(0, 0, 70, 60);
 
         title.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 48)); // NOI18N
         title.setForeground(new java.awt.Color(61, 82, 77));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Trivia Trekker");
+        mainPage.add(title);
+        title.setBounds(0, 43, 650, 72);
 
         exit.setForeground(new java.awt.Color(132, 165, 157));
         exit.setText("X");
         exit.setBorderPainted(false);
         exit.setContentAreaFilled(false);
+        mainPage.add(exit);
+        exit.setBounds(580, 0, 70, 50);
 
         HowTo.setBackground(new java.awt.Color(245, 202, 195));
         HowTo.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -906,6 +932,8 @@ public class TriviaView extends javax.swing.JFrame {
         HowTo.setMaximumSize(new java.awt.Dimension(120, 40));
         HowTo.setMinimumSize(new java.awt.Dimension(120, 40));
         HowTo.setPreferredSize(new java.awt.Dimension(120, 40));
+        mainPage.add(HowTo);
+        HowTo.setBounds(373, 143, 120, 40);
 
         newGame.setBackground(new java.awt.Color(246, 189, 96));
         newGame.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -915,6 +943,8 @@ public class TriviaView extends javax.swing.JFrame {
         newGame.setMaximumSize(new java.awt.Dimension(120, 40));
         newGame.setMinimumSize(new java.awt.Dimension(120, 40));
         newGame.setPreferredSize(new java.awt.Dimension(120, 40));
+        mainPage.add(newGame);
+        newGame.setBounds(156, 143, 120, 40);
 
         toHighScores.setBackground(new java.awt.Color(245, 202, 195));
         toHighScores.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -924,6 +954,8 @@ public class TriviaView extends javax.swing.JFrame {
         toHighScores.setMaximumSize(new java.awt.Dimension(120, 40));
         toHighScores.setMinimumSize(new java.awt.Dimension(120, 40));
         toHighScores.setPreferredSize(new java.awt.Dimension(120, 40));
+        mainPage.add(toHighScores);
+        toHighScores.setBounds(373, 212, 120, 40);
 
         customise.setBackground(new java.awt.Color(245, 202, 195));
         customise.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -933,6 +965,8 @@ public class TriviaView extends javax.swing.JFrame {
         customise.setMaximumSize(new java.awt.Dimension(120, 40));
         customise.setMinimumSize(new java.awt.Dimension(120, 40));
         customise.setPreferredSize(new java.awt.Dimension(120, 40));
+        mainPage.add(customise);
+        customise.setBounds(156, 212, 120, 40);
 
         reset.setBackground(new java.awt.Color(245, 202, 195));
         reset.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
@@ -942,55 +976,19 @@ public class TriviaView extends javax.swing.JFrame {
         reset.setMaximumSize(new java.awt.Dimension(120, 40));
         reset.setMinimumSize(new java.awt.Dimension(120, 40));
         reset.setPreferredSize(new java.awt.Dimension(120, 40));
+        mainPage.add(reset);
+        reset.setBounds(156, 288, 120, 40);
 
-        javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
-        mainPage.setLayout(mainPageLayout);
-        mainPageLayout.setHorizontalGroup(
-            mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(mainPageLayout.createSequentialGroup()
-                        .addComponent(customise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(toHighScores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPageLayout.createSequentialGroup()
-                        .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97)
-                        .addComponent(HowTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(mainPageLayout.createSequentialGroup()
-                        .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(217, 217, 217)))
-                .addGap(157, 157, 157))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(toStart)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exit)
-                .addContainerGap())
-        );
-        mainPageLayout.setVerticalGroup(
-            mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPageLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(toStart)
-                    .addComponent(exit))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(HowTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(newGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(toHighScores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customise, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-        );
+        continueGame.setBackground(new java.awt.Color(245, 202, 195));
+        continueGame.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 12)); // NOI18N
+        continueGame.setForeground(new java.awt.Color(61, 82, 77));
+        continueGame.setText("Continue Game");
+        continueGame.setBorderPainted(false);
+        continueGame.setMaximumSize(new java.awt.Dimension(120, 40));
+        continueGame.setMinimumSize(new java.awt.Dimension(120, 40));
+        continueGame.setPreferredSize(new java.awt.Dimension(120, 40));
+        mainPage.add(continueGame);
+        continueGame.setBounds(373, 288, 120, 40);
 
         main.add(mainPage, "card3");
 
@@ -1589,7 +1587,7 @@ public class TriviaView extends javax.swing.JFrame {
                                 .addComponent(exit7)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, questionsAddLayout.createSequentialGroup()
-                .addContainerGap(235, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(237, 237, 237))
         );
@@ -1683,7 +1681,7 @@ public class TriviaView extends javax.swing.JFrame {
                         .addComponent(YesQs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(NoQs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 227, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(questionsCheckLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(inputQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2286,6 +2284,11 @@ public class TriviaView extends javax.swing.JFrame {
         exit14.setBorderPainted(false);
         exit14.setContentAreaFilled(false);
 
+        singleQuestion1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 16)); // NOI18N
+        singleQuestion1.setForeground(new java.awt.Color(61, 82, 77));
+        singleQuestion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        singleQuestion1.setText("Question pts 2");
+
         javax.swing.GroupLayout singleGameLayout = new javax.swing.GroupLayout(singleGame);
         singleGame.setLayout(singleGameLayout);
         singleGameLayout.setHorizontalGroup(
@@ -2315,6 +2318,10 @@ public class TriviaView extends javax.swing.JFrame {
                     .addComponent(ans8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ans5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, singleGameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(singleQuestion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         singleGameLayout.setVerticalGroup(
             singleGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2324,7 +2331,9 @@ public class TriviaView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categoryName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(singleQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(singleQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(singleQuestion1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(singleGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ans5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2620,7 +2629,7 @@ public class TriviaView extends javax.swing.JFrame {
                 .addGroup(multiplayerNamesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(multiplayerNamesLayout.createSequentialGroup()
                         .addGroup(multiplayerNamesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(question7, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                            .addComponent(question7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(multiplayerNamesLayout.createSequentialGroup()
                                 .addComponent(toMainM)
                                 .addGap(61, 61, 61)
@@ -2748,23 +2757,27 @@ public class TriviaView extends javax.swing.JFrame {
         playersOnStreak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         playersOnStreak.setText("Streak");
 
+        multiQuestion1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 16)); // NOI18N
+        multiQuestion1.setForeground(new java.awt.Color(61, 82, 77));
+        multiQuestion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        multiQuestion1.setText("Question pt 2");
+
         javax.swing.GroupLayout multiGameLayout = new javax.swing.GroupLayout(multiGame);
         multiGame.setLayout(multiGameLayout);
         multiGameLayout.setHorizontalGroup(
             multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(multiQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(multiGameLayout.createSequentialGroup()
+                .addComponent(playersOnStreak, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exit18)
+                .addContainerGap())
+            .addGroup(multiGameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(multiGameLayout.createSequentialGroup()
-                        .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(score2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(score1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(score3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(score4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14))
+                        .addComponent(multiQuestion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(multiGameLayout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2777,12 +2790,16 @@ public class TriviaView extends javax.swing.JFrame {
                         .addGap(0, 115, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, multiGameLayout.createSequentialGroup()
                         .addComponent(categoryNameM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-            .addGroup(multiGameLayout.createSequentialGroup()
-                .addComponent(playersOnStreak, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exit18)
-                .addContainerGap())
+                        .addContainerGap())
+                    .addGroup(multiGameLayout.createSequentialGroup()
+                        .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(score2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(score1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(score3, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                            .addComponent(score4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(34, 34, 34))))
         );
         multiGameLayout.setVerticalGroup(
             multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2796,25 +2813,24 @@ public class TriviaView extends javax.swing.JFrame {
                 .addComponent(categoryNameM)
                 .addGap(18, 18, 18)
                 .addComponent(multiQuestion)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(multiQuestion1)
+                .addGap(53, 53, 53)
                 .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ans11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ans9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addGap(29, 29, 29)
                 .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ans12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ans10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, multiGameLayout.createSequentialGroup()
-                        .addComponent(score2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(score1)
-                            .addComponent(score4)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, multiGameLayout.createSequentialGroup()
-                        .addComponent(score3)
-                        .addGap(31, 31, 31)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(score2)
+                    .addComponent(score3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(multiGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(score1)
+                    .addComponent(score4))
                 .addContainerGap())
         );
 
@@ -3002,15 +3018,15 @@ public class TriviaView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, multiCustomOptionsLayout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addGroup(multiCustomOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scienceM, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(scienceM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(historyM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38)
                 .addGroup(multiCustomOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(geographyM, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(geographyM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(artsM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(39, 39, 39)
                 .addGroup(multiCustomOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(customM, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                    .addComponent(customM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(sportsM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(103, 103, 103))
         );
@@ -3111,7 +3127,7 @@ public class TriviaView extends javax.swing.JFrame {
             .addGroup(endMultiGameLayout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(toStartEndM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(replayM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(104, 104, 104))
             .addGroup(endMultiGameLayout.createSequentialGroup()
@@ -3171,10 +3187,10 @@ public class TriviaView extends javax.swing.JFrame {
         specialQuestion.setBackground(new java.awt.Color(247, 237, 226));
         specialQuestion.setMinimumSize(new java.awt.Dimension(650, 365));
 
-        specialTitle.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 16)); // NOI18N
-        specialTitle.setForeground(new java.awt.Color(61, 82, 77));
-        specialTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        specialTitle.setText("Question");
+        specialQ.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 16)); // NOI18N
+        specialQ.setForeground(new java.awt.Color(61, 82, 77));
+        specialQ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        specialQ.setText("Question");
 
         specialQuestionGame.setBackground(new java.awt.Color(132, 165, 157));
         specialQuestionGame.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
@@ -3198,14 +3214,13 @@ public class TriviaView extends javax.swing.JFrame {
         specialQuestion.setLayout(specialQuestionLayout);
         specialQuestionLayout.setHorizontalGroup(
             specialQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(specialTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(specialQ, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(specialQuestionLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(specialQuestionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(specialQuestionLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(specialQuestionGame, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+                    .addComponent(specialQuestionGame, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, specialQuestionLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(exit22)))
                 .addContainerGap())
             .addGroup(specialQuestionLayout.createSequentialGroup()
@@ -3221,7 +3236,7 @@ public class TriviaView extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(specialQuestionGame)
                 .addGap(18, 18, 18)
-                .addComponent(specialTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(specialQ, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(specialAnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(110, Short.MAX_VALUE))
@@ -3517,6 +3532,42 @@ public class TriviaView extends javax.swing.JFrame {
         multiCustomOptions.repaint();
         multiCustomOptions.revalidate();
     }
+    
+    public void showSecondQuestionPartM() {
+        multiGame.add(multiQuestion1);
+        multiGame.repaint();
+        multiGame.revalidate();
+    }
+    
+    public void hideSecondQuestionPartM() {
+        multiGame.remove(multiQuestion1);
+        multiGame.repaint();
+        multiGame.revalidate();
+    }
+    
+    public void showSecondQuestionPartS() {
+        singleGame.add(singleQuestion1);
+        singleGame.repaint();
+        singleGame.revalidate();
+    }
+    
+    public void hideSecondQuestionPartS() {
+        singleGame.remove(singleQuestion1);
+        singleGame.repaint();
+        singleGame.revalidate();
+    }
+    
+    public void showContinueGame() {
+        mainPage.add(continueGame);
+        mainPage.repaint();
+        mainPage.revalidate();
+    }
+    
+    public void hideContinueGame() {
+        mainPage.remove(continueGame);
+        mainPage.repaint();
+        mainPage.revalidate();
+    }
 
     public void addActionListenerToButton(JButton button, ActionListener listener) {
         button.addActionListener(listener);
@@ -3564,6 +3615,7 @@ public class TriviaView extends javax.swing.JFrame {
     private javax.swing.JButton backToMain;
     private javax.swing.JLabel categoryName;
     private javax.swing.JLabel categoryNameM;
+    private javax.swing.JButton continueGame;
     private javax.swing.JLabel continueQ;
     private javax.swing.JButton customM;
     private javax.swing.JLabel customNote;
@@ -3628,6 +3680,7 @@ public class TriviaView extends javax.swing.JFrame {
     private javax.swing.JPanel multiCustomOptions;
     private javax.swing.JPanel multiGame;
     private javax.swing.JLabel multiQuestion;
+    private javax.swing.JLabel multiQuestion1;
     private javax.swing.JPanel multiplayerGameOptions;
     private javax.swing.JPanel multiplayerNames;
     private javax.swing.JButton multiplayerOption;
@@ -3679,10 +3732,11 @@ public class TriviaView extends javax.swing.JFrame {
     private javax.swing.JPanel singlePlayerGameOptions;
     private javax.swing.JButton singlePlayerOption;
     private javax.swing.JLabel singleQuestion;
+    private javax.swing.JLabel singleQuestion1;
     private javax.swing.JTextField specialAnswerField;
+    private javax.swing.JLabel specialQ;
     private javax.swing.JPanel specialQuestion;
     private javax.swing.JLabel specialQuestionGame;
-    private javax.swing.JLabel specialTitle;
     private javax.swing.JButton sportsM;
     private javax.swing.JButton sportsS;
     private javax.swing.JPanel startPage;
