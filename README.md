@@ -9,3 +9,5 @@ Welcome to Trivia Trekker, a fun and engaging GUI-based trivia game! 🖥️✨ 
 - Customisable Questions: Add your own questions for some fun knowledge testing!
 - Trackable Highscores: Keep track of all of you and your friends highscores in a easy to find highscores area!
 - Resetable data: Find you want to start over with highscores and questions? Just hit the reset button and start from new!
+
+# Are you ready to flex your brain and have some fun? Let the trivia showdown begin! 🏆💡
